@@ -1,4 +1,4 @@
-# Wigglevig - Smart eCommerce iOS Application
+# Abrats - Smart eCommerce iOS Application
 
 This is the Smart eCommerce frontend for the AITHON 2026 hackathon. It features an intelligent "Smart Cart" powered by a FastAPI ML backend, providing dynamic recommendations and a premium shopping experience.
 

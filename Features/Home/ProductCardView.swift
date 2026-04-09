@@ -20,35 +20,12 @@ struct ProductCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             GeometryReader { geo in
-                
-                AsyncImage(url: product.imageURL) { phase in
-                    if let image = phase.image {
-                        image
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: geo.size.width, height: 150)
-                            .clipped()
-                            .cornerRadius(8)
-                    } else if phase.error != nil {
-                        ZStack {
-                            Color(.systemGray5)
-                            Image(systemName: "photo")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 30))
-                        }
-                        .frame(width: geo.size.width, height: 150)
-                        .cornerRadius(8)
-                    } else {
-                        ZStack {
-                            Color(.systemGray5)
-                            ProgressView()
-                        }
-                        .frame(width: geo.size.width, height: 150)
-                        .cornerRadius(8)
-                    }
-                }
+                CustomAsyncImage(url: product.imageURL)
+                    .frame(width: geo.size.width, height: 150)
+                    .cornerRadius(8)
+                    .clipped()
             }
-            .frame(height: 150) // fix GeometryReader height
+            .frame(height: 150)
             
             // Product Text
             Text(product.title)

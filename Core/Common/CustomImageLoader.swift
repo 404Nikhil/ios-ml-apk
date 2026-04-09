@@ -10,11 +10,16 @@ import Combine
 
 final class CustomImageLoader: ObservableObject {
     @Published var image: UIImage?
+    @Published var hasFailed = false
     
     private var hasLoaded = false
     
     func load(url: URL?) {
-        guard !hasLoaded, let url else { return }
+        guard !hasLoaded else { return }
+        guard let url else {
+            hasFailed = true
+            return
+        }
         hasLoaded = true
         
         Task {
@@ -24,9 +29,15 @@ final class CustomImageLoader: ObservableObject {
                     await MainActor.run {
                         self.image = img
                     }
+                } else {
+                    await MainActor.run {
+                        self.hasFailed = true
+                    }
                 }
             } catch {
-                print("Image load failed:", error)
+                await MainActor.run {
+                    self.hasFailed = true
+                }
             }
         }
     }

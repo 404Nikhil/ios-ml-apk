@@ -41,6 +41,7 @@ struct CartItemRow: View {
                     Button(action: onRemove) {
                         Image(systemName: "minus.circle.fill")
                     }
+                    .buttonStyle(.borderless)
                     
                     Text("\(item.quantity)")
                         .fontWeight(.medium)
@@ -48,6 +49,7 @@ struct CartItemRow: View {
                     Button(action: onAdd) {
                         Image(systemName: "plus.circle.fill")
                     }
+                    .buttonStyle(.borderless)
                 }
                 .font(.title3)
                 .foregroundColor(.black)

@@ -12,6 +12,12 @@ import Combine
 final class CartViewModel: ObservableObject {
 
     @Published private(set) var items: [CartItem] = []
+    
+    // --- Smart Cart State ---
+    @Published var recommendations: [ProductItem] = []
+    @Published var isRecommendationsLoading = false
+    @Published var trendingItems: [ProductItem] = []
+
     private var cancellable: AnyCancellable?
     private var repository: CartRepository?
     
@@ -34,6 +40,10 @@ final class CartViewModel: ObservableObject {
         String(format: "$%.2f", repository?.totalPrice ?? 0)
     }
     
+    var totalPrice: Double {
+        repository?.totalPrice ?? 0
+    }
+    
     func removeItem(_ item: CartItem) {
         repository?.remove(productId: item.id)
     }
@@ -42,4 +52,30 @@ final class CartViewModel: ObservableObject {
         repository?.increaseQuantity(productId: item.id)
     }
     
+    // --- Smart Cart Methods ---
+    func addToCart(_ item: ProductItem) {
+        repository?.add(product: item)
+    }
+    
+    func fetchInitialData() {
+        Task {
+            isRecommendationsLoading = true
+            do {
+                recommendations = try await MockSmartCartService.shared.fetchFrequentlyBoughtTogether()
+                trendingItems = try await MockSmartCartService.shared.fetchTrendingItems()
+            } catch {
+                print("Failed to fetch smart cart data")
+            }
+            isRecommendationsLoading = false
+        }
+    }
+    
+    // Pass-through functions for ProductCardView (used in trending)
+    func removeFromCart(_ product: ProductItem) {
+        repository?.remove(productId: product.id)
+    }
+    
+    func quantity(for product: ProductItem) -> Int {
+        items.first(where: { $0.id == product.id })?.quantity ?? 0
+    }
 }

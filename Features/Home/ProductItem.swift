@@ -6,7 +6,28 @@
 //
 
 import Foundation
-struct ProductItem: Identifiable {
+import CoreTransferable
+import UniformTypeIdentifiers
+
+// 1. Define a custom UTType for your app's products
+extension UTType {
+    static var smartCartProduct: UTType {
+        UTType(exportedAs: "com.wigglevig.aithon.productitem")
+    }
+}
+
+// 2. Make the model Transferable using DataRepresentation (Sendable-safe)
+extension ProductItem: Transferable {
+    public static var transferRepresentation: some TransferRepresentation {
+        DataRepresentation(contentType: .smartCartProduct) { item in
+            try JSONEncoder().encode(item)
+        } importing: { data in
+            try JSONDecoder().decode(ProductItem.self, from: data)
+        }
+    }
+}
+
+struct ProductItem: Identifiable, Codable, Sendable {
     let id: String
     let title: String
     let price: Double?

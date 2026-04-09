@@ -17,6 +17,7 @@ final class CartViewModel: ObservableObject {
     @Published var recommendations: [ProductItem] = []
     @Published var isRecommendationsLoading = false
     @Published var trendingItems: [ProductItem] = []
+    @Published var isTrendingLoading = false
 
     private var cancellable: AnyCancellable?
     private var repository: CartRepository?
@@ -59,14 +60,16 @@ final class CartViewModel: ObservableObject {
     
     func fetchInitialData() {
         Task {
-            isRecommendationsLoading = true
+            isTrendingLoading = true
             do {
-                recommendations = try await MockSmartCartService.shared.fetchFrequentlyBoughtTogether()
-                trendingItems = try await MockSmartCartService.shared.fetchTrendingItems()
+                // Fetch real available products as 'trending' items
+                let dtos: [ProductItemDTO] = try await APIClient.shared.request(Endpoint.products())
+                self.trendingItems = dtos.map { ProductItem(from: $0) }
             } catch {
-                print("Failed to fetch smart cart data")
+                print("⚠️ Failed to fetch trending items:", error)
+                self.trendingItems = []
             }
-            isRecommendationsLoading = false
+            isTrendingLoading = false
         }
     }
     

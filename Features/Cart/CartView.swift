@@ -19,35 +19,92 @@ struct CartView: View {
                     .ignoresSafeArea()
                 
                 if viewModel.isEmptyCart {
-                    // --- THE EMPTY STATE (TRENDING ITEMS) ---
-                    ScrollView {
-                        VStack(spacing: 20) {
-                            Image(systemName: "cart")
-                                .font(.system(size: 60))
-                                .foregroundColor(.gray)
-                                .padding(.top, 40)
+                    // --- PREMIUM EMPTY STATE ---
+                    ScrollView(showsIndicators: false) {
+                        VStack(spacing: 24) {
                             
-                            Text(AppStrings.Cart.emptyMessage)
-                                .font(.title2).fontWeight(.bold)
-                            
-                            Text("Check out what's trending right now:")
-                                .foregroundColor(.secondary)
-                            
-                            // Reusing ProductCardView
-                            LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
-                                ForEach(viewModel.trendingItems) { item in
-                                    ProductCardView(
-                                        product: item,
-                                        quantity: viewModel.quantity(for: item),
-                                        registryQuantity: 0,
-                                        onAdd: { viewModel.addToCart(item) },
-                                        onRemove: { viewModel.removeFromCart(item) },
-                                        onAddToRegistry: { },
-                                        onRemoveFromRegistry: { }
-                                    )
+                            // 1. Stylized Empty State Illustration
+                            VStack(spacing: 16) {
+                                ZStack {
+                                    Circle()
+                                        .fill(
+                                            LinearGradient(
+                                                gradient: Gradient(colors: [Color.black.opacity(0.8), Color.black]),
+                                                startPoint: .topLeading,
+                                                endPoint: .bottomTrailing
+                                            )
+                                        )
+                                        .frame(width: 100, height: 100)
+                                        .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                                    
+                                    Image(systemName: "bag.badge.plus")
+                                        .font(.system(size: 40))
+                                        .foregroundColor(.white)
                                 }
+                                .padding(.top, 40)
+                                
+                                Text(AppStrings.Cart.emptyMessage)
+                                    .font(.system(size: 24, weight: .bold, design: .rounded))
+                                    .multilineTextAlignment(.center)
+                                
+                                Text("Your cart is waiting to be filled with great products.")
+                                    .font(.subheadline)
+                                    .foregroundColor(.secondary)
+                                    .multilineTextAlignment(.center)
+                                    .padding(.horizontal, 40)
                             }
-                            .padding()
+
+                            // 2. Trending Header (Consistent with Smart Recommendations)
+                            HStack(spacing: 8) {
+                                RoundedRectangle(cornerRadius: 2)
+                                    .fill(Color.black)
+                                    .frame(width: 3, height: 16)
+                                
+                                Text("TRENDING NOW")
+                                    .font(.system(size: 14, weight: .bold))
+                                    .kerning(1.2)
+                                    .foregroundColor(.primary)
+                                
+                                Spacer()
+                            }
+                            .padding(.horizontal)
+                            .padding(.top, 20)
+                            
+                            // 3. Trending Items Grid
+                            if viewModel.isTrendingLoading {
+                                // Skeletal Loading Grid
+                                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                                    ForEach(0..<4, id: \.self) { _ in
+                                        RoundedRectangle(cornerRadius: 12)
+                                            .fill(Color(.systemGray5))
+                                            .frame(height: 220)
+                                            .shimmering()
+                                    }
+                                }
+                                .padding(.horizontal)
+                            } else {
+                                LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
+                                    ForEach(viewModel.trendingItems.prefix(10)) { item in
+                                        ProductCardView(
+                                            product: item,
+                                            quantity: viewModel.quantity(for: item),
+                                            registryQuantity: 0,
+                                            onAdd: { 
+                                                withAnimation(.spring()) {
+                                                    viewModel.addToCart(item) 
+                                                }
+                                            },
+                                            onRemove: { viewModel.removeFromCart(item) },
+                                            onAddToRegistry: { },
+                                            onRemoveFromRegistry: { }
+                                        )
+                                        .transition(.scale.combined(with: .opacity))
+                                    }
+                                }
+                                .padding(.horizontal)
+                            }
+                            
+                            Spacer(minLength: 40)
                         }
                     }
                 } else {

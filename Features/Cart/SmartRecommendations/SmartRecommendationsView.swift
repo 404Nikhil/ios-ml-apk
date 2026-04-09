@@ -16,53 +16,31 @@ struct SmartRecommendationsView: View {
     let cartItems: [(id: String, title: String)]
     var onAdd: (RecommendationItem) -> Void
 
-    @State private var sections: [RecommendationSection] = []
-    @State private var isLoading = true
-    @State private var hasError = false
+    @StateObject private var viewModel = SmartRecommendationsViewModel()
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if isLoading {
+            if viewModel.isLoading {
                 // Show skeleton for each typical section (3 sections, 3 cards each)
                 ForEach(0..<3, id: \.self) { _ in
                     RecommendationSkeletonSection()
                 }
-            } else if hasError {
+            } else if viewModel.hasError && viewModel.sections.isEmpty {
                 // Graceful error — don't crash the cart UI
                 EmptyView()
             } else {
-                ForEach(sections) { section in
+                ForEach(viewModel.sections) { section in
                     if !section.items.isEmpty {
                         RecommendationSectionView(section: section, onAdd: onAdd)
                     }
                 }
             }
         }
-        .task(id: cartItems.map(\.id).joined()) {
-            await loadRecommendations()
+        .onAppear {
+            viewModel.cartDidUpdate(cartItems)
         }
-    }
-
-    private func loadRecommendations() async {
-        guard !cartItems.isEmpty else {
-            isLoading = false
-            return
-        }
-        isLoading = true
-        hasError = false
-        let intcartIds = RecommendationService.shared.resolvedIntcartIds(from: cartItems)
-        do {
-            let response = try await RecommendationService.shared.fetchRecommendations(for: intcartIds)
-            withAnimation(.easeInOut(duration: 0.4)) {
-                sections = response.sections
-                isLoading = false
-            }
-        } catch {
-            print("⚠️ Recommendations failed:", error.localizedDescription)
-            withAnimation {
-                isLoading = false
-                hasError = true
-            }
+        .onChange(of: cartItems.map(\.id).joined()) { _ in
+            viewModel.cartDidUpdate(cartItems)
         }
     }
 }

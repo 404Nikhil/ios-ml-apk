@@ -58,8 +58,7 @@ extension RecommendationItem {
     func asProductItem() -> ProductItem {
         // The image path from the API is relative e.g. "/images/pan_1.jpg"
         // We store it as-is and use imageURL on RecommendationItem for display.
-        // CartRepository.add() expects a full URL or a partial Node URL.
-        // We pass the full Python backend URL string here so CartItemRow can load it.
-        ProductItem(id: id, title: name.replacingOccurrences(of: "_", with: " ").capitalized, price: Double(price), path: AppConstants.RecommendAPI.baseURL + image)
+        // ProductItem.imageURL will correctly prepend the Base URL itself.
+        ProductItem(id: id, title: name.replacingOccurrences(of: "_", with: " ").capitalized, price: Double(price), path: image)
     }
 }

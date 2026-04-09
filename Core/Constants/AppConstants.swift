@@ -9,13 +9,13 @@ import Foundation
 enum AppConstants {
     
     enum API {
-        static let baseURL = "http://localhost:3001"
-        static let imageBasePath = baseURL + "/images/"
+        static let baseURL = "http://127.0.0.1:8000"
+        static let imageBasePath = baseURL
         static let timeout: TimeInterval = 30
     }
 
     enum RecommendAPI {
-        static let baseURL = "http://127.0.0.1:8000"
+        static let baseURL = API.baseURL
         static let recommendEndpoint = baseURL + "/recommend"
     }
 }

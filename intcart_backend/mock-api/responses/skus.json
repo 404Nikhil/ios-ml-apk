@@ -1,0 +1,1931 @@
+[
+  {
+    "id": "SKU-PAN-001",
+    "name": "GreenPan Reserve Ceramic Nonstick Fry Pan Set, 10\" & 12\"",
+    "shortName": "GreenPan Reserve Fry Pan Set",
+    "primaryGroupId": "greenpan-reserve-fry-pan-set",
+    "price": {
+      "regularPrice": 179.95,
+      "surcharge": 0,
+      "retailPrice": 179.95,
+      "sellingPrice": 149.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "cream-gold",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "greenpan",
+      "organic": "true",
+      "productType": "fry-pans",
+      "earthFriendly": "true",
+      "canGiftWrap": "true",
+      "collection": "greenpan-reserve",
+      "allProductTypes": "fry-pans",
+      "material": "ceramic-nonstick",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pan_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "GreenPan Reserve Ceramic Nonstick Fry Pan Set, cream with gold handles"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PAN-002",
+    "name": "All-Clad HA1 Hard Anodized Nonstick Fry Pan, 12\"",
+    "shortName": "All-Clad HA1 Fry Pan 12\"",
+    "primaryGroupId": "all-clad-ha1-fry-pan",
+    "price": {
+      "regularPrice": 99.95,
+      "surcharge": 0,
+      "retailPrice": 99.95,
+      "sellingPrice": 99.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "dark-grey",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "all-clad",
+      "productType": "fry-pans",
+      "canGiftWrap": "true",
+      "allProductTypes": "fry-pans",
+      "material": "hard-anodized-aluminum",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pan_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "All-Clad HA1 Hard Anodized Nonstick Fry Pan"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PAN-003",
+    "name": "Le Creuset Toughened Nonstick PRO Fry Pan, 11\"",
+    "shortName": "Le Creuset Nonstick PRO Pan",
+    "primaryGroupId": "le-creuset-toughened-nonstick-fry-pan",
+    "price": {
+      "regularPrice": 135.00,
+      "surcharge": 0,
+      "retailPrice": 135.00,
+      "sellingPrice": 109.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "black",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "le-creuset",
+      "productType": "fry-pans",
+      "canGiftWrap": "true",
+      "allProductTypes": "fry-pans",
+      "material": "nonstick-aluminum",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pan_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Le Creuset Toughened Nonstick PRO Fry Pan"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PAN-004",
+    "name": "Staub Enameled Cast Iron Deep Skillet, 12\"",
+    "shortName": "Staub Cast Iron Deep Skillet",
+    "primaryGroupId": "staub-cast-iron-deep-skillet",
+    "price": {
+      "regularPrice": 310.00,
+      "surcharge": 0,
+      "retailPrice": 310.00,
+      "sellingPrice": 249.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "matte-black",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "staub",
+      "organic": "true",
+      "productType": "fry-pans-skillets",
+      "earthFriendly": "true",
+      "canGiftWrap": "true",
+      "collection": "staub-cast-iron",
+      "allProductTypes": "fry-pans-skillets",
+      "material": "enameled-cast-iron",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pan_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Staub Enameled Cast Iron Deep Skillet"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-POT-001",
+    "name": "Le Creuset Enameled Cast Iron Soup Pot, 4.5-Qt., White",
+    "shortName": "Le Creuset Soup Pot White",
+    "primaryGroupId": "le-creuset-soup-pot",
+    "price": {
+      "regularPrice": 380.00,
+      "surcharge": 0,
+      "retailPrice": 380.00,
+      "sellingPrice": 299.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "white",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "le-creuset",
+      "organic": "true",
+      "productType": "dutch-ovens",
+      "earthFriendly": "true",
+      "canGiftWrap": "true",
+      "collection": "le-creuset-cast-iron",
+      "allProductTypes": "dutch-ovens",
+      "material": "enameled-cast-iron",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pot_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Le Creuset Enameled Cast Iron Soup Pot in White"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-POT-002",
+    "name": "Staub Enameled Cast Iron Round Dutch Oven, 7-Qt., Cherry",
+    "shortName": "Staub Dutch Oven 7-Qt. Cherry",
+    "primaryGroupId": "staub-round-dutch-oven",
+    "price": {
+      "regularPrice": 470.00,
+      "surcharge": 0,
+      "retailPrice": 470.00,
+      "sellingPrice": 349.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "cherry-red",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "staub",
+      "organic": "true",
+      "productType": "dutch-ovens",
+      "earthFriendly": "true",
+      "canGiftWrap": "true",
+      "collection": "staub-cast-iron",
+      "allProductTypes": "dutch-ovens",
+      "material": "enameled-cast-iron",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pot_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Staub Enameled Cast Iron Round Dutch Oven in Cherry"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-POT-003",
+    "name": "All-Clad Stainless-Steel Stockpot, 8-Qt.",
+    "shortName": "All-Clad Stockpot 8-Qt.",
+    "primaryGroupId": "all-clad-stainless-stockpot",
+    "price": {
+      "regularPrice": 299.95,
+      "surcharge": 0,
+      "retailPrice": 299.95,
+      "sellingPrice": 259.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "stainless-steel",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "all-clad",
+      "productType": "stockpots",
+      "canGiftWrap": "true",
+      "allProductTypes": "stockpots",
+      "material": "stainless-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pot_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "All-Clad Stainless-Steel Stockpot"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-POT-004",
+    "name": "Le Creuset Cast Iron Braiser, 3.5-Qt., Artichaut",
+    "shortName": "Le Creuset Braiser Artichaut",
+    "primaryGroupId": "le-creuset-braiser",
+    "price": {
+      "regularPrice": 350.00,
+      "surcharge": 0,
+      "retailPrice": 350.00,
+      "sellingPrice": 279.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "artichaut-green",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "le-creuset",
+      "productType": "braisers",
+      "canGiftWrap": "true",
+      "allProductTypes": "braisers",
+      "material": "enameled-cast-iron",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pot_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Le Creuset Cast Iron Braiser in Artichaut"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-POT-005",
+    "name": "Signature Stainless Steel Saucepan with Lid, 3-Qt.",
+    "shortName": "Stainless Saucepan 3-Qt.",
+    "primaryGroupId": "stainless-saucepan",
+    "price": {
+      "regularPrice": 189.95,
+      "surcharge": 0,
+      "retailPrice": 189.95,
+      "sellingPrice": 189.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "silver",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "all-clad",
+      "productType": "saucepans",
+      "canGiftWrap": "true",
+      "allProductTypes": "saucepans",
+      "material": "stainless-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/pot_5.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Signature Stainless Steel Saucepan with Lid"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-KNF-001",
+    "name": "Wüsthof Performer 7-Piece Knife Block Set",
+    "shortName": "Wüsthof Performer Knife Set",
+    "primaryGroupId": "wusthof-performer-knife-set",
+    "price": {
+      "regularPrice": 499.95,
+      "surcharge": 0,
+      "retailPrice": 499.95,
+      "sellingPrice": 449.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "walnut-black",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "wusthof",
+      "productType": "knife-sets",
+      "canGiftWrap": "true",
+      "collection": "wusthof-performer",
+      "allProductTypes": "knife-sets",
+      "material": "high-carbon-stainless-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/knife_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Wüsthof Performer 7-Piece Knife Block Set in walnut block"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-KNF-002",
+    "name": "Shun Classic Chef's Knife, 8\"",
+    "shortName": "Shun Classic Chef's Knife",
+    "primaryGroupId": "shun-classic-chefs-knife",
+    "price": {
+      "regularPrice": 179.95,
+      "surcharge": 0,
+      "retailPrice": 179.95,
+      "sellingPrice": 149.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "pakkawood",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "shun",
+      "productType": "chefs-knives",
+      "canGiftWrap": "true",
+      "collection": "shun-classic",
+      "allProductTypes": "chefs-knives",
+      "material": "vg-max-stainless-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/knife_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Shun Classic Chef's Knife 8 inch"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-KNF-003",
+    "name": "Wüsthof Classic Santoku Knife, 7\"",
+    "shortName": "Wüsthof Classic Santoku",
+    "primaryGroupId": "wusthof-classic-santoku",
+    "price": {
+      "regularPrice": 149.95,
+      "surcharge": 0,
+      "retailPrice": 149.95,
+      "sellingPrice": 129.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "black",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "wusthof",
+      "productType": "santoku-knives",
+      "canGiftWrap": "true",
+      "collection": "wusthof-classic",
+      "allProductTypes": "santoku-knives",
+      "material": "high-carbon-stainless-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/knife_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Wüsthof Classic Santoku Knife"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-KNF-004",
+    "name": "Zwilling Pro Bread Knife, 9\"",
+    "shortName": "Zwilling Pro Bread Knife",
+    "primaryGroupId": "zwilling-pro-bread-knife",
+    "price": {
+      "regularPrice": 119.95,
+      "surcharge": 0,
+      "retailPrice": 119.95,
+      "sellingPrice": 99.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "black",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "zwilling",
+      "productType": "bread-knives",
+      "canGiftWrap": "true",
+      "allProductTypes": "bread-knives",
+      "material": "special-formula-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/knife_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Zwilling Pro Bread Knife"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-KNF-005",
+    "name": "Miyabi Kaizen II Paring Knife, 3.5\"",
+    "shortName": "Miyabi Paring Knife",
+    "primaryGroupId": "miyabi-kaizen-paring",
+    "price": {
+      "regularPrice": 69.95,
+      "surcharge": 0,
+      "retailPrice": 69.95,
+      "sellingPrice": 59.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "birchwood",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "miyabi",
+      "productType": "paring-knives",
+      "canGiftWrap": "true",
+      "allProductTypes": "paring-knives",
+      "material": "mc63-powder-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/knife_5.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Miyabi Kaizen II Paring Knife"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-CB-001",
+    "name": "Williams Sonoma Acacia Cutting Board Set, 3-Piece",
+    "shortName": "WS Acacia Cutting Board Set",
+    "primaryGroupId": "ws-acacia-cutting-board-set",
+    "price": {
+      "regularPrice": 129.95,
+      "surcharge": 0,
+      "retailPrice": 129.95,
+      "sellingPrice": 129.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "natural-wood",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "organic": "true",
+      "productType": "cutting-boards",
+      "canGiftWrap": "true",
+      "allProductTypes": "cutting-boards",
+      "material": "acacia-wood",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/cutting_board_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Williams Sonoma Acacia Cutting Board Set, 3 pieces stacked"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-CB-002",
+    "name": "Williams Sonoma End-Grain Cutting Board, Walnut, 18\" × 14\"",
+    "shortName": "WS End-Grain Board Walnut",
+    "primaryGroupId": "ws-end-grain-cutting-board",
+    "price": {
+      "regularPrice": 149.95,
+      "surcharge": 0,
+      "retailPrice": 149.95,
+      "sellingPrice": 149.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "walnut",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "organic": "true",
+      "productType": "cutting-boards",
+      "canGiftWrap": "true",
+      "allProductTypes": "cutting-boards",
+      "material": "walnut-wood",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/cutting_board_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Williams Sonoma End-Grain Cutting Board in Walnut"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-CB-003",
+    "name": "John Boos Maple Carving Board with Groove, 24\" × 18\"",
+    "shortName": "John Boos Maple Carving Board",
+    "primaryGroupId": "john-boos-maple-carving-board",
+    "price": {
+      "regularPrice": 219.95,
+      "surcharge": 0,
+      "retailPrice": 219.95,
+      "sellingPrice": 189.95
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "maple",
+      "pattern": "cutlery",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "john-boos",
+      "organic": "true",
+      "productType": "cutting-boards",
+      "canGiftWrap": "true",
+      "allProductTypes": "cutting-boards",
+      "material": "maple-wood",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/cutting_board_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "John Boos Maple Carving Board with juice groove"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-SPT-001",
+    "name": "Williams Sonoma Silicone Spatula Set, 4-Piece, Charcoal",
+    "shortName": "WS Silicone Spatula Set",
+    "primaryGroupId": "ws-silicone-spatula-set",
+    "price": {
+      "regularPrice": 49.95,
+      "surcharge": 0,
+      "retailPrice": 49.95,
+      "sellingPrice": 39.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "charcoal",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "spatulas",
+      "canGiftWrap": "true",
+      "allProductTypes": "spatulas",
+      "material": "silicone",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/spatula_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Williams Sonoma Silicone Spatula Set in Charcoal, 4 pieces"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-SPT-002",
+    "name": "Sur La Table Silicone Slotted Turner",
+    "shortName": "Sur La Table Slotted Turner",
+    "primaryGroupId": "sur-la-table-slotted-turner",
+    "price": {
+      "regularPrice": 24.95,
+      "surcharge": 0,
+      "retailPrice": 24.95,
+      "sellingPrice": 19.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "black",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "sur-la-table",
+      "productType": "spatulas",
+      "canGiftWrap": "true",
+      "allProductTypes": "spatulas",
+      "material": "silicone-nylon",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/spatula_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Sur La Table Silicone Slotted Turner"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-SPT-003",
+    "name": "OXO Good Grips Silicone Flexible Turner",
+    "shortName": "OXO Flexible Turner",
+    "primaryGroupId": "oxo-silicone-flexible-turner",
+    "price": {
+      "regularPrice": 14.95,
+      "surcharge": 0,
+      "retailPrice": 14.95,
+      "sellingPrice": 12.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "black-steel",
+      "pattern": "cookware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "oxo",
+      "productType": "spatulas",
+      "canGiftWrap": "true",
+      "allProductTypes": "spatulas",
+      "material": "silicone-stainless-steel",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/spatula_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "OXO Good Grips Silicone Flexible Turner"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-SOFA-001",
+    "name": "Harlow Curved Velvet Sofa, Camel",
+    "shortName": "Harlow Curved Sofa Camel",
+    "primaryGroupId": "harlow-curved-velvet-sofa",
+    "price": {
+      "regularPrice": 3499.00,
+      "surcharge": 0,
+      "retailPrice": 3499.00,
+      "sellingPrice": 2999.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "camel-velvet",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "sofas",
+      "canGiftWrap": "false",
+      "allProductTypes": "sofas",
+      "material": "velvet-upholstery",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/sofa_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Harlow Curved Velvet Sofa in Camel, living room setting"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-SOFA-002",
+    "name": "Milo Upholstered Sofa, Linen, Oatmeal",
+    "shortName": "Milo Sofa Oatmeal",
+    "primaryGroupId": "milo-upholstered-sofa",
+    "price": {
+      "regularPrice": 2899.00,
+      "surcharge": 0,
+      "retailPrice": 2899.00,
+      "sellingPrice": 2499.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "oatmeal-linen",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "sofas",
+      "canGiftWrap": "false",
+      "allProductTypes": "sofas",
+      "material": "linen-upholstery",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/sofa_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Milo Upholstered Sofa in Oatmeal linen"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-SOFA-003",
+    "name": "Andover Tufted Sofa, Performance Linen, Navy",
+    "shortName": "Andover Tufted Sofa Navy",
+    "primaryGroupId": "andover-tufted-sofa",
+    "price": {
+      "regularPrice": 4199.00,
+      "surcharge": 0,
+      "retailPrice": 4199.00,
+      "sellingPrice": 3599.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "navy",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "sofas",
+      "canGiftWrap": "false",
+      "allProductTypes": "sofas",
+      "material": "performance-linen",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/sofa_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Andover Tufted Sofa in Navy performance linen"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-SOFA-004",
+    "name": "Belgrave Leather Sofa, Cognac",
+    "shortName": "Belgrave Leather Sofa",
+    "primaryGroupId": "belgrave-leather-sofa",
+    "price": {
+      "regularPrice": 5499.00,
+      "surcharge": 0,
+      "retailPrice": 5499.00,
+      "sellingPrice": 4799.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "cognac",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "sofas",
+      "canGiftWrap": "false",
+      "allProductTypes": "sofas",
+      "material": "top-grain-leather",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/sofa_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Belgrave Leather Sofa in Cognac"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-SOFA-005",
+    "name": "Huxley Boucle Sofa, Ivory",
+    "shortName": "Huxley Boucle Sofa Ivory",
+    "primaryGroupId": "huxley-boucle-sofa",
+    "price": {
+      "regularPrice": 3799.00,
+      "surcharge": 0,
+      "retailPrice": 3799.00,
+      "sellingPrice": 3299.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "ivory",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "sofas",
+      "canGiftWrap": "false",
+      "allProductTypes": "sofas",
+      "material": "boucle-fabric",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/sofa_5.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Huxley Boucle Sofa in Ivory"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CHR-001",
+    "name": "Bobbin Armchair, Striped Linen, Sage",
+    "shortName": "Bobbin Armchair Sage",
+    "primaryGroupId": "bobbin-armchair-linen",
+    "price": {
+      "regularPrice": 1599.00,
+      "surcharge": 0,
+      "retailPrice": 1599.00,
+      "sellingPrice": 1349.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "sage-stripe",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "accent-chairs",
+      "canGiftWrap": "false",
+      "allProductTypes": "accent-chairs",
+      "material": "linen-wood",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/chair_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Bobbin Armchair in sage striped linen with throw blanket"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CHR-002",
+    "name": "Essex Wingback Chair, Velvet, Emerald",
+    "shortName": "Essex Wingback Emerald",
+    "primaryGroupId": "essex-wingback-chair",
+    "price": {
+      "regularPrice": 1899.00,
+      "surcharge": 0,
+      "retailPrice": 1899.00,
+      "sellingPrice": 1649.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "emerald-velvet",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "accent-chairs",
+      "canGiftWrap": "false",
+      "allProductTypes": "accent-chairs",
+      "material": "velvet-upholstery",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/chair_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Essex Wingback Chair in Emerald velvet"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CHR-003",
+    "name": "Lancaster Leather Club Chair, Chestnut",
+    "shortName": "Lancaster Club Chair",
+    "primaryGroupId": "lancaster-leather-club-chair",
+    "price": {
+      "regularPrice": 2399.00,
+      "surcharge": 0,
+      "retailPrice": 2399.00,
+      "sellingPrice": 1999.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "chestnut",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "accent-chairs",
+      "canGiftWrap": "false",
+      "allProductTypes": "accent-chairs",
+      "material": "full-grain-leather",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/chair_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Lancaster Leather Club Chair in Chestnut"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CHR-004",
+    "name": "Waverly Upholstered Dining Chair, Set of 2",
+    "shortName": "Waverly Dining Chair Set",
+    "primaryGroupId": "waverly-dining-chair-set",
+    "price": {
+      "regularPrice": 899.00,
+      "surcharge": 0,
+      "retailPrice": 899.00,
+      "sellingPrice": 749.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "cream",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "dining-chairs",
+      "canGiftWrap": "false",
+      "allProductTypes": "dining-chairs",
+      "material": "performance-fabric-wood",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/chair_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Waverly Upholstered Dining Chair Set of 2"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CHR-005",
+    "name": "Harrington Rattan Accent Chair, Natural",
+    "shortName": "Harrington Rattan Chair",
+    "primaryGroupId": "harrington-rattan-accent-chair",
+    "price": {
+      "regularPrice": 1199.00,
+      "surcharge": 0,
+      "retailPrice": 1199.00,
+      "sellingPrice": 999.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "natural",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "accent-chairs",
+      "canGiftWrap": "false",
+      "allProductTypes": "accent-chairs",
+      "material": "rattan-linen",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/chair_5.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Harrington Rattan Accent Chair in Natural"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CT-001",
+    "name": "Pedestal Round Coffee Table, White Oak, Set of 2",
+    "shortName": "Pedestal Coffee Table Set",
+    "primaryGroupId": "pedestal-round-coffee-table-set",
+    "price": {
+      "regularPrice": 1899.00,
+      "surcharge": 0,
+      "retailPrice": 1899.00,
+      "sellingPrice": 1599.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "white-oak",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "coffee-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "coffee-tables",
+      "material": "white-oak",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/coffee_table_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Pedestal Round Coffee Table Set of 2 in White Oak"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CT-002",
+    "name": "Marble Top Coffee Table, Brass Base, 42\"",
+    "shortName": "Marble Coffee Table Brass",
+    "primaryGroupId": "marble-top-coffee-table-brass",
+    "price": {
+      "regularPrice": 2299.00,
+      "surcharge": 0,
+      "retailPrice": 2299.00,
+      "sellingPrice": 1899.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "white-marble-brass",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "coffee-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "coffee-tables",
+      "material": "marble-brass",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/coffee_table_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Marble Top Coffee Table with Brass Base"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CT-003",
+    "name": "Driftwood Round Coffee Table, Weathered, 36\"",
+    "shortName": "Driftwood Coffee Table",
+    "primaryGroupId": "driftwood-round-coffee-table",
+    "price": {
+      "regularPrice": 1499.00,
+      "surcharge": 0,
+      "retailPrice": 1499.00,
+      "sellingPrice": 1249.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "weathered-grey",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "coffee-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "coffee-tables",
+      "material": "reclaimed-wood",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/coffee_table_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Driftwood Round Coffee Table in weathered grey"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CT-004",
+    "name": "Walnut Live-Edge Coffee Table, 48\"",
+    "shortName": "Live-Edge Coffee Table",
+    "primaryGroupId": "walnut-live-edge-coffee-table",
+    "price": {
+      "regularPrice": 2799.00,
+      "surcharge": 0,
+      "retailPrice": 2799.00,
+      "sellingPrice": 2399.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "natural-walnut",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "coffee-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "coffee-tables",
+      "material": "solid-walnut",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/coffee_table_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Walnut Live-Edge Coffee Table"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-CT-005",
+    "name": "Stone Drum Coffee Table, Ivory, 32\"",
+    "shortName": "Stone Drum Coffee Table",
+    "primaryGroupId": "stone-drum-coffee-table",
+    "price": {
+      "regularPrice": 1699.00,
+      "surcharge": 0,
+      "retailPrice": 1699.00,
+      "sellingPrice": 1399.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "ivory",
+      "pattern": "furniture",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "coffee-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "coffee-tables",
+      "material": "cast-stone",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/coffee_table_5.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Stone Drum Coffee Table in Ivory"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-TBL-001",
+    "name": "Tulip Oval Dining Table, Carrara Marble, Brass Base, 72\"",
+    "shortName": "Tulip Marble Dining Table",
+    "primaryGroupId": "tulip-oval-dining-table",
+    "price": {
+      "regularPrice": 4999.00,
+      "surcharge": 0,
+      "retailPrice": 4999.00,
+      "sellingPrice": 4299.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "carrara-marble-brass",
+      "pattern": "dining",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "dining-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "dining-tables",
+      "material": "carrara-marble-brass",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/table_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Tulip Oval Dining Table in Carrara Marble with Brass Base"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-TBL-002",
+    "name": "Farmhouse Reclaimed Wood Dining Table, 84\"",
+    "shortName": "Farmhouse Dining Table",
+    "primaryGroupId": "farmhouse-reclaimed-dining-table",
+    "price": {
+      "regularPrice": 3499.00,
+      "surcharge": 0,
+      "retailPrice": 3499.00,
+      "sellingPrice": 2899.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "weathered-pine",
+      "pattern": "dining",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "dining-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "dining-tables",
+      "material": "reclaimed-pine",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/table_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Farmhouse Reclaimed Wood Dining Table"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-TBL-003",
+    "name": "Walnut Extending Dining Table, 60\"–84\"",
+    "shortName": "Walnut Extending Table",
+    "primaryGroupId": "walnut-extending-dining-table",
+    "price": {
+      "regularPrice": 3999.00,
+      "surcharge": 0,
+      "retailPrice": 3999.00,
+      "sellingPrice": 3399.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "warm-walnut",
+      "pattern": "dining",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "dining-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "dining-tables",
+      "material": "solid-walnut",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/table_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Walnut Extending Dining Table"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-TBL-004",
+    "name": "Glass Top Trestle Dining Table, Iron Base, 72\"",
+    "shortName": "Glass Trestle Dining Table",
+    "primaryGroupId": "glass-top-trestle-dining-table",
+    "price": {
+      "regularPrice": 2799.00,
+      "surcharge": 0,
+      "retailPrice": 2799.00,
+      "sellingPrice": 2399.00
+    },
+    "freeShip": true,
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "clear-iron",
+      "pattern": "dining",
+      "isFood": "false",
+      "isFurniture": "true",
+      "brand": "williams-sonoma-home",
+      "productType": "dining-tables",
+      "canGiftWrap": "false",
+      "allProductTypes": "dining-tables",
+      "material": "tempered-glass-iron",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/table_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Glass Top Trestle Dining Table with Iron Base"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "FREIGHT"
+  },
+  {
+    "id": "SKU-PLT-001",
+    "name": "Berry Meadow Porcelain Salad Plates, Set of 5",
+    "shortName": "Berry Meadow Salad Plates",
+    "primaryGroupId": "berry-meadow-salad-plates",
+    "price": {
+      "regularPrice": 89.95,
+      "surcharge": 0,
+      "retailPrice": 89.95,
+      "sellingPrice": 74.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "multicolor-botanical",
+      "pattern": "tabletop",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "salad-plates",
+      "canGiftWrap": "true",
+      "allProductTypes": "salad-plates",
+      "material": "porcelain",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/plate_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Berry Meadow Porcelain Salad Plates, 5-piece set with botanical designs"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PLT-002",
+    "name": "Artisan Stoneware Dinner Plates, Set of 4, Fog",
+    "shortName": "Artisan Dinner Plates Fog",
+    "primaryGroupId": "artisan-stoneware-dinner-plates",
+    "price": {
+      "regularPrice": 79.95,
+      "surcharge": 0,
+      "retailPrice": 79.95,
+      "sellingPrice": 64.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "fog-grey",
+      "pattern": "tabletop",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "dinner-plates",
+      "canGiftWrap": "true",
+      "allProductTypes": "dinner-plates",
+      "material": "stoneware",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/plate_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Artisan Stoneware Dinner Plates in Fog"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PLT-003",
+    "name": "Apilco Tradition Porcelain Dinner Plate, White, Each",
+    "shortName": "Apilco Dinner Plate White",
+    "primaryGroupId": "apilco-tradition-dinner-plate",
+    "price": {
+      "regularPrice": 24.95,
+      "surcharge": 0,
+      "retailPrice": 24.95,
+      "sellingPrice": 19.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "white",
+      "pattern": "tabletop",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "apilco",
+      "productType": "dinner-plates",
+      "canGiftWrap": "true",
+      "collection": "apilco-tradition",
+      "allProductTypes": "dinner-plates",
+      "material": "porcelain",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/plate_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Apilco Tradition Porcelain Dinner Plate in White"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PLT-004",
+    "name": "Rustic Hand-Painted Ceramic Plates, Set of 4",
+    "shortName": "Rustic Ceramic Plates Set",
+    "primaryGroupId": "rustic-hand-painted-plates",
+    "price": {
+      "regularPrice": 99.95,
+      "surcharge": 0,
+      "retailPrice": 99.95,
+      "sellingPrice": 84.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "earth-tones",
+      "pattern": "tabletop",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "dinner-plates",
+      "canGiftWrap": "true",
+      "allProductTypes": "dinner-plates",
+      "material": "ceramic",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/plate_4.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Rustic Hand-Painted Ceramic Plates"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-PLT-005",
+    "name": "Goldrim Bone China Charger Plates, Set of 4",
+    "shortName": "Goldrim Charger Plates",
+    "primaryGroupId": "goldrim-bone-china-charger",
+    "price": {
+      "regularPrice": 149.95,
+      "surcharge": 0,
+      "retailPrice": 149.95,
+      "sellingPrice": 129.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "white-gold",
+      "pattern": "tabletop",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "charger-plates",
+      "canGiftWrap": "true",
+      "allProductTypes": "charger-plates",
+      "material": "bone-china",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/plate_5.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Goldrim Bone China Charger Plates"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-GLS-001",
+    "name": "Dorset Martini Glasses, Set of 4",
+    "shortName": "Dorset Martini Glasses",
+    "primaryGroupId": "dorset-crystal-martini-glass",
+    "price": {
+      "regularPrice": 89.95,
+      "surcharge": 0,
+      "retailPrice": 89.95,
+      "sellingPrice": 74.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "clear",
+      "pattern": "glassware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "martini-glasses",
+      "canGiftWrap": "true",
+      "collection": "dorset",
+      "allProductTypes": "martini-glasses",
+      "material": "lead-free-crystal",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/glass_1.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Dorset Martini Glasses with cocktail being poured"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-GLS-002",
+    "name": "Estate Wine Glasses, Set of 6, Bordeaux",
+    "shortName": "Estate Wine Glasses Bordeaux",
+    "primaryGroupId": "estate-wine-glasses-bordeaux",
+    "price": {
+      "regularPrice": 119.95,
+      "surcharge": 0,
+      "retailPrice": 119.95,
+      "sellingPrice": 99.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "clear",
+      "pattern": "glassware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "wine-glasses",
+      "canGiftWrap": "true",
+      "collection": "estate",
+      "allProductTypes": "wine-glasses",
+      "material": "crystal",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/glass_2.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Estate Wine Glasses Set of 6"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  },
+  {
+    "id": "SKU-GLS-003",
+    "name": "Handblown Double Old-Fashioned Glasses, Set of 4",
+    "shortName": "Handblown DOF Glasses",
+    "primaryGroupId": "handblown-dof-glasses",
+    "price": {
+      "regularPrice": 69.95,
+      "surcharge": 0,
+      "retailPrice": 69.95,
+      "sellingPrice": 59.95
+    },
+    "properties": {
+      "isMarketPlace": "false",
+      "isSpecialOrder": "false",
+      "color": "clear",
+      "pattern": "glassware",
+      "isFood": "false",
+      "isFurniture": "false",
+      "brand": "williams-sonoma",
+      "productType": "rocks-glasses",
+      "canGiftWrap": "true",
+      "allProductTypes": "rocks-glasses",
+      "material": "handblown-glass",
+      "isShoppable": "true"
+    },
+    "media": {
+      "images": [
+        {
+          "type": "prodimage",
+          "path": "/images/glass_3.jpg",
+          "aspect": "q",
+          "properties": {
+            "altText": "Handblown Double Old-Fashioned Glasses"
+          }
+        }
+      ]
+    },
+    "availability": "ON_HAND",
+    "deliveryEstimate": "TRANSIT"
+  }
+]

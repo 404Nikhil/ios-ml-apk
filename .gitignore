@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+
+# Xcode
+build/
+DerivedData/
+*.xcworkspace
+xcuserdata/
+*.moved-aside
+*.xccheckout
+*.xcuserstate
+*.xcarchive
+
+# CocoaPods & SPM
+Pods/
+.build/
+
+# Temporary
+*.swp
+*.tmp
+*.log

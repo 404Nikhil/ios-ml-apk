@@ -2,8 +2,6 @@
 //  CustomAsyncImage.swift
 //  WSHackathonApp
 //
-//  Created by Nilesh Mahajan on 06/04/26.
-//
 
 import SwiftUI
 

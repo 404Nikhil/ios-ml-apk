@@ -13,4 +13,9 @@ enum AppConstants {
         static let imageBasePath = baseURL + "/images/"
         static let timeout: TimeInterval = 30
     }
+
+    enum RecommendAPI {
+        static let baseURL = "http://127.0.0.1:8000"
+        static let recommendEndpoint = baseURL + "/recommend"
+    }
 }

@@ -76,29 +76,35 @@ struct CartView: View {
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                             
-                            // 2. The Smart Recommendations
+                            // 2. Smart ML Recommendations (dynamic sections from backend)
                             Section {
-                                FrequentlyBoughtView(
-                                    items: viewModel.recommendations,
-                                    isLoading: viewModel.isRecommendationsLoading,
-                                    onAdd: { item in
+                                SmartRecommendationsView(
+                                    cartItems: viewModel.items.map { (id: $0.id, title: $0.title) },
+                                    onAdd: { recItem in
                                         withAnimation(.spring()) {
-                                            viewModel.addToCart(item)
+                                            viewModel.addToCart(recItem.asProductItem())
                                         }
                                     }
                                 )
-                                .padding(.horizontal, -16) // offset default list margins
+                                .listRowInsets(EdgeInsets())
                             }
                             .listRowBackground(Color.clear)
                             .listRowSeparator(.hidden)
                         }
                         .listStyle(.plain)
                         // THE MAGIC: Drop destination for the dragged items
-                        .dropDestination(for: ProductItem.self) { droppedItems, location in
+                        .dropDestination(for: ProductItem.self) { droppedItems, _ in
                             for item in droppedItems {
-                                // Add a nice spring animation when dropped
                                 withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                                     viewModel.addToCart(item)
+                                }
+                            }
+                            return true
+                        }
+                        .dropDestination(for: RecommendationItem.self) { droppedItems, _ in
+                            for item in droppedItems {
+                                withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                                    viewModel.addToCart(item.asProductItem())
                                 }
                             }
                             return true

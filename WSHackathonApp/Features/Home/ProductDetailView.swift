@@ -48,6 +48,18 @@ struct ProductDetailView: View {
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
                 
+                // MARK: - Bundle Offer
+                if let bundle = viewModel.bundleOffer {
+                    BundleOfferView(
+                        bundle: bundle,
+                        onAddBundle: { items in
+                            viewModel.addBundleToCart(items)
+                        }
+                    )
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
+                }
+                
                 // MARK: - Similar Items
                 if !viewModel.similarItems.isEmpty {
                     similarItemsSection

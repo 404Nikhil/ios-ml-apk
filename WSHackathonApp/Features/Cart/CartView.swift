@@ -139,7 +139,24 @@ struct CartView: View {
                             .listRowSeparator(.hidden)
                             .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
                             
-                            // 2. Smart ML Recommendations (dynamic sections from backend)
+                            // 2. Bundle Offer
+                            if let bundle = viewModel.bundleOffer {
+                                Section {
+                                    CompactBundleOfferView(
+                                        bundle: bundle,
+                                        onAddBundle: { items in
+                                            withAnimation(.spring()) {
+                                                viewModel.addBundleToCart(items)
+                                            }
+                                        }
+                                    )
+                                    .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                }
+                                .listRowBackground(Color.clear)
+                                .listRowSeparator(.hidden)
+                            }
+                            
+                            // 3. Smart ML Recommendations (dynamic sections from backend)
                             Section {
                                 SmartRecommendationsView(
                                     cartItems: viewModel.items.map { (id: $0.id, title: $0.title) },
@@ -211,6 +228,14 @@ struct CartView: View {
             Task {
                 viewModel.bind(repository: cartRepository)
                 viewModel.fetchInitialData()
+            }
+        }
+        .onChange(of: viewModel.items.count) { _ in
+            viewModel.buildBundleFromCart()
+        }
+        .onChange(of: viewModel.isTrendingLoading) { isLoading in
+            if !isLoading {
+                viewModel.buildBundleFromCart()
             }
         }
     }

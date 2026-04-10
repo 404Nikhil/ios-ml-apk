@@ -18,6 +18,7 @@ final class CartViewModel: ObservableObject {
     @Published var isRecommendationsLoading = false
     @Published var trendingItems: [ProductItem] = []
     @Published var isTrendingLoading = false
+    @Published var bundleOffer: BundleOffer?
 
     private var cancellable: AnyCancellable?
     private var repository: CartRepository?
@@ -58,6 +59,13 @@ final class CartViewModel: ObservableObject {
         repository?.add(product: item)
     }
     
+    func addBundleToCart(_ items: [BundleItem]) {
+        for item in items {
+            let product = item.asProductItem()
+            repository?.add(product: product)
+        }
+    }
+    
     func fetchInitialData() {
         Task {
             isTrendingLoading = true
@@ -71,6 +79,61 @@ final class CartViewModel: ObservableObject {
             }
             isTrendingLoading = false
         }
+    }
+    
+    // Build a bundle offer from current cart items + complementary product
+    func buildBundleFromCart() {
+        guard !items.isEmpty, !trendingItems.isEmpty else {
+            bundleOffer = nil
+            return
+        }
+        
+        var bundleItems: [BundleItem] = []
+        var usedIds = Set<String>()
+        
+        // Add current cart items (up to 2)
+        for cartItem in items.prefix(2) {
+            bundleItems.append(BundleItem(
+                id: cartItem.id,
+                title: shortTitle(cartItem.title),
+                price: cartItem.price,
+                imageURL: cartItem.imageURL
+            ))
+            usedIds.insert(cartItem.id)
+        }
+        
+        // Add complementary items from trending that aren't already in cart
+        let cartIds = Set(items.map(\.id))
+        let complementary = trendingItems.filter { !cartIds.contains($0.id) && !usedIds.contains($0.id) }
+        
+        for item in complementary.prefix(2) {
+            bundleItems.append(BundleItem(
+                id: item.id,
+                title: shortTitle(item.title),
+                price: item.price ?? 0,
+                imageURL: item.imageURL
+            ))
+            usedIds.insert(item.id)
+        }
+        
+        guard bundleItems.count >= 3 else {
+            bundleOffer = nil
+            return
+        }
+        
+        bundleOffer = BundleOffer(
+            title: "Bundle & save on your picks",
+            items: bundleItems,
+            discountPercent: 15
+        )
+    }
+    
+    private func shortTitle(_ title: String) -> String {
+        let words = title.components(separatedBy: " ")
+        if words.count > 3 {
+            return words.prefix(3).joined(separator: " ")
+        }
+        return title
     }
     
     // Pass-through functions for ProductCardView (used in trending)

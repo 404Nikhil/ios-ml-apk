@@ -19,6 +19,7 @@ final class ProductDetailViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var recommendationSections: [RecommendationSection] = []
     @Published var isRecommendationsLoading = false
+    @Published var bundleOffer: BundleOffer?
     
     private var cartRepository: CartRepository?
     private var registryRepository: RegistryRepository?
@@ -40,6 +41,14 @@ final class ProductDetailViewModel: ObservableObject {
     
     func quantity(for product: ProductItem) -> Int {
         cartRepository?.items.first(where: { $0.id == product.id })?.quantity ?? 0
+    }
+    
+    // MARK: - Bundle Action
+    func addBundleToCart(_ items: [BundleItem]) {
+        for item in items {
+            let product = item.asProductItem()
+            cartRepository?.add(product: product)
+        }
     }
     
     // MARK: - Registry Actions
@@ -103,11 +112,89 @@ final class ProductDetailViewModel: ObservableObject {
             self.recommendationSections = response.sections.filter {
                 !$0.items.isEmpty && !$0.title.localizedCaseInsensitiveContains("similar")
             }
+            
+            // Build bundle offer from recommendation data
+            buildBundleOffer(for: product, from: response.sections)
         } catch {
             print("⚠️ Failed to fetch recommendations: \(error)")
             self.recommendationSections = []
         }
         
         isRecommendationsLoading = false
+    }
+    
+    // MARK: - Build Bundle Offer
+    private func buildBundleOffer(for product: ProductItem, from sections: [RecommendationSection]) {
+        // Collect items from FBT + Complete sections for the bundle
+        var bundleItems: [BundleItem] = []
+        var usedIds = Set<String>()
+        
+        // Always include the current product first
+        bundleItems.append(BundleItem(
+            id: product.id,
+            title: shortTitle(product.title),
+            price: product.price ?? 0,
+            imageURL: product.imageURL
+        ))
+        usedIds.insert(product.id)
+        
+        // Add items from FBT section first, then from other sections
+        let fbtSections = sections.filter { $0.title.localizedCaseInsensitiveContains("frequently") }
+        let otherSections = sections.filter { !$0.title.localizedCaseInsensitiveContains("frequently") && !$0.title.localizedCaseInsensitiveContains("similar") }
+        
+        let allSections = fbtSections + otherSections
+        
+        for section in allSections {
+            for item in section.items {
+                if !usedIds.contains(item.id) && bundleItems.count < 4 {
+                    bundleItems.append(BundleItem(
+                        id: item.id,
+                        title: item.name.replacingOccurrences(of: "_", with: " ").capitalized,
+                        price: Double(item.price),
+                        imageURL: item.imageURL
+                    ))
+                    usedIds.insert(item.id)
+                }
+            }
+        }
+        
+        // Need at least 3 items for a meaningful bundle
+        guard bundleItems.count >= 3 else {
+            self.bundleOffer = nil
+            return
+        }
+        
+        // Determine bundle title based on what's in it
+        let title = determineBundleTitle(for: product)
+        
+        self.bundleOffer = BundleOffer(
+            title: title,
+            items: bundleItems,
+            discountPercent: 15
+        )
+    }
+    
+    private func determineBundleTitle(for product: ProductItem) -> String {
+        let titleLower = product.title.lowercased()
+        if titleLower.contains("pan") || titleLower.contains("skillet") || titleLower.contains("pot") || titleLower.contains("dutch") {
+            return "Complete your cookware setup"
+        } else if titleLower.contains("knife") || titleLower.contains("cutting") || titleLower.contains("board") {
+            return "Complete your prep station"
+        } else if titleLower.contains("spatula") || titleLower.contains("turner") {
+            return "Complete your kitchen tools"
+        } else if titleLower.contains("chair") || titleLower.contains("table") || titleLower.contains("sofa") {
+            return "Complete your living space"
+        } else {
+            return "Complete your collection"
+        }
+    }
+    
+    private func shortTitle(_ title: String) -> String {
+        // Truncate long product titles for the bundle view
+        let words = title.components(separatedBy: " ")
+        if words.count > 3 {
+            return words.prefix(3).joined(separator: " ")
+        }
+        return title
     }
 }

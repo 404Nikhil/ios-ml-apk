@@ -120,15 +120,20 @@ struct CartView: View {
                             // 1. The Main Cart Items
                             Section {
                                 ForEach(viewModel.items) { cartItem in
-                                    CartItemRow(
-                                        item: cartItem,
-                                        onAdd: { viewModel.add(cartItem) },
-                                        onRemove: { viewModel.removeItem(cartItem) },
-                                        onDelete: {
-                                            withAnimation { viewModel.deleteItem(cartItem) }
-                                        }
-                                    )
-                                    // NATIVE SWIPE TO DELETE
+                                    NavigationLink(destination: ProductDetailView(
+                                        product: ProductItem(id: cartItem.id, title: cartItem.title, price: cartItem.price, path: cartItem.imageURL?.absoluteString, brand: nil, productType: nil),
+                                        allProducts: viewModel.trendingItems
+                                    )) {
+                                        CartItemRow(
+                                            item: cartItem,
+                                            onAdd: { viewModel.add(cartItem) },
+                                            onRemove: { viewModel.removeItem(cartItem) },
+                                            onDelete: {
+                                                withAnimation { viewModel.deleteItem(cartItem) }
+                                            }
+                                        )
+                                    }
+                                    .buttonStyle(.plain)
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         Button(role: .destructive) {
                                             withAnimation { viewModel.deleteItem(cartItem) }

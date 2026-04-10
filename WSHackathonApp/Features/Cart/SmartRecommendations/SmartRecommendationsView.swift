@@ -71,14 +71,20 @@ private struct RecommendationSectionView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
                     ForEach(section.items) { item in
-                        RecommendationProductCard(item: item, onAdd: onAdd)
-                            // Drag-and-drop support
-                            .draggable(item) {
-                                RecommendationProductCard(item: item, onAdd: { _ in })
-                                    .frame(width: 130, height: 170)
-                                    .opacity(0.85)
-                                    .scaleEffect(0.95)
-                            }
+                        NavigationLink(destination: ProductDetailView(
+                            product: item.asProductItem(),
+                            allProducts: []
+                        )) {
+                            RecommendationProductCard(item: item, onAdd: onAdd)
+                                // Drag-and-drop support
+                                .draggable(item) {
+                                    RecommendationProductCard(item: item, onAdd: { _ in })
+                                        .frame(width: 130, height: 170)
+                                        .opacity(0.85)
+                                        .scaleEffect(0.95)
+                                }
+                        }
+                        .buttonStyle(.plain)
                     }
                 }
                 .padding(.horizontal, 16)

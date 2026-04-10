@@ -27,7 +27,7 @@ struct RecommendationItem: Codable, Identifiable, Sendable {
     let name: String
     let type: String
     let category: String
-    let price: Int
+    let price: Double
     let image: String   // relative path e.g. "/images/pan_1.jpg"
 
     /// Fully-qualified image URL using the recommendation server base.
@@ -35,8 +35,8 @@ struct RecommendationItem: Codable, Identifiable, Sendable {
         URL(string: AppConstants.RecommendAPI.baseURL + image)
     }
 
-    /// Formatted price string. Backend returns price in currency units (no subdivision).
-    var priceText: String { "$\(price)" }
+    /// Formatted price string. Backend returns price in currency units.
+    var priceText: String { String(format: "$%.2f", price) }
 }
 
 // MARK: - Transferable (drag-and-drop)

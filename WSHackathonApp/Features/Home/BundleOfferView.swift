@@ -62,6 +62,19 @@ struct BundleOfferView: View {
     var onAddBundle: ([BundleItem]) -> Void
     
     @State private var bundleAdded = false
+    @State private var customItems: [BundleItem] = []
+    
+    var currentOriginalTotal: Double {
+        customItems.reduce(0) { $0 + $1.price }
+    }
+    
+    var currentDiscountedTotal: Double {
+        currentOriginalTotal * (1.0 - Double(bundle.discountPercent) / 100.0)
+    }
+    
+    var currentSavings: Double {
+        currentOriginalTotal - currentDiscountedTotal
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -90,7 +103,7 @@ struct BundleOfferView: View {
                             .font(.system(size: 17, weight: .bold, design: .rounded))
                             .foregroundColor(.primary)
                         
-                        Text("\(bundle.items.count) items • Buy together & save")
+                        Text("\(customItems.count) items • Buy together & save")
                             .font(.system(size: 12, weight: .medium))
                             .foregroundColor(.secondary)
                     }
@@ -102,7 +115,7 @@ struct BundleOfferView: View {
                         Text("SAVE")
                             .font(.system(size: 9, weight: .heavy))
                             .kerning(1)
-                        Text("$\(Int(bundle.savings))")
+                        Text("$\(Int(currentSavings))")
                             .font(.system(size: 18, weight: .black))
                     }
                     .foregroundColor(.white)
@@ -118,10 +131,26 @@ struct BundleOfferView: View {
                 // Middle: Product thumbnails with "+" between them
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack(spacing: 0) {
-                        ForEach(Array(bundle.items.enumerated()), id: \.element.id) { index, item in
-                            BundleItemThumbnail(item: item)
+                        ForEach(Array(customItems.enumerated()), id: \.element.id) { index, item in
+                            ZStack(alignment: .topTrailing) {
+                                BundleItemThumbnail(item: item)
+                                
+                                if customItems.count > 1 {
+                                    Button(action: {
+                                        withAnimation {
+                                            customItems.removeAll { $0.id == item.id }
+                                        }
+                                    }) {
+                                        Image(systemName: "minus.circle.fill")
+                                            .font(.system(size: 16))
+                                            .foregroundColor(.black)
+                                            .background(Circle().fill(Color.white).padding(2))
+                                    }
+                                    .offset(x: 5, y: -5)
+                                }
+                            }
                             
-                            if index < bundle.items.count - 1 {
+                            if index < customItems.count - 1 {
                                 Text("+")
                                     .font(.system(size: 20, weight: .bold))
                                     .foregroundColor(.secondary)
@@ -130,6 +159,7 @@ struct BundleOfferView: View {
                         }
                     }
                     .padding(.horizontal, 16)
+                    .padding(.top, 8)
                 }
                 .padding(.bottom, 14)
                 
@@ -143,12 +173,12 @@ struct BundleOfferView: View {
                 HStack(spacing: 12) {
                     // Price information
                     VStack(alignment: .leading, spacing: 2) {
-                        Text(String(format: "$%.2f", bundle.originalTotal))
+                        Text(String(format: "$%.2f", currentOriginalTotal))
                             .font(.system(size: 13, weight: .medium))
                             .foregroundColor(.secondary)
                             .strikethrough(true, color: .secondary)
                         
-                        Text(String(format: "$%.2f", bundle.discountedTotal))
+                        Text(String(format: "$%.2f", currentDiscountedTotal))
                             .font(.system(size: 20, weight: .bold))
                             .foregroundColor(.primary)
                     }
@@ -159,7 +189,7 @@ struct BundleOfferView: View {
                     Button(action: {
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                             bundleAdded = true
-                            onAddBundle(bundle.items)
+                            onAddBundle(customItems)
                         }
                         DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                             withAnimation { bundleAdded = false }
@@ -190,6 +220,8 @@ struct BundleOfferView: View {
             )
             .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 3)
         }
+        .onAppear { customItems = bundle.items }
+        .onChange(of: bundle.id) { _ in customItems = bundle.items }
     }
 }
 
@@ -231,6 +263,19 @@ struct CompactBundleOfferView: View {
     var onAddBundle: ([BundleItem]) -> Void
     
     @State private var bundleAdded = false
+    @State private var customItems: [BundleItem] = []
+    
+    var currentOriginalTotal: Double {
+        customItems.reduce(0) { $0 + $1.price }
+    }
+    
+    var currentDiscountedTotal: Double {
+        currentOriginalTotal * (1.0 - Double(bundle.discountPercent) / 100.0)
+    }
+    
+    var currentSavings: Double {
+        currentOriginalTotal - currentDiscountedTotal
+    }
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -251,7 +296,7 @@ struct CompactBundleOfferView: View {
                 Spacer()
                 
                 // Savings pill
-                Text("Save $\(Int(bundle.savings))")
+                Text("Save $\(Int(currentSavings))")
                     .font(.system(size: 11, weight: .bold))
                     .foregroundColor(.white)
                     .padding(.horizontal, 10)
@@ -266,21 +311,37 @@ struct CompactBundleOfferView: View {
             // Items row
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 0) {
-                    ForEach(Array(bundle.items.enumerated()), id: \.element.id) { index, item in
-                        VStack(spacing: 4) {
-                            CustomAsyncImage(url: item.imageURL)
-                                .frame(width: 60, height: 50)
-                                .clipped()
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                    ForEach(Array(customItems.enumerated()), id: \.element.id) { index, item in
+                        ZStack(alignment: .topTrailing) {
+                            VStack(spacing: 4) {
+                                CustomAsyncImage(url: item.imageURL)
+                                    .frame(width: 60, height: 50)
+                                    .clipped()
+                                    .clipShape(RoundedRectangle(cornerRadius: 6))
+                                
+                                Text(item.title)
+                                    .font(.system(size: 9, weight: .semibold))
+                                    .foregroundColor(.primary)
+                                    .lineLimit(1)
+                                    .frame(width: 60)
+                            }
                             
-                            Text(item.title)
-                                .font(.system(size: 9, weight: .semibold))
-                                .foregroundColor(.primary)
-                                .lineLimit(1)
-                                .frame(width: 60)
+                            if customItems.count > 1 {
+                                Button(action: {
+                                    withAnimation {
+                                        customItems.removeAll { $0.id == item.id }
+                                    }
+                                }) {
+                                    Image(systemName: "minus.circle.fill")
+                                        .font(.system(size: 14))
+                                        .foregroundColor(.black)
+                                        .background(Circle().fill(Color.white).padding(2))
+                                }
+                                .offset(x: 5, y: -5)
+                            }
                         }
                         
-                        if index < bundle.items.count - 1 {
+                        if index < customItems.count - 1 {
                             Text("+")
                                 .font(.system(size: 16, weight: .bold))
                                 .foregroundColor(.secondary)
@@ -289,6 +350,7 @@ struct CompactBundleOfferView: View {
                     }
                 }
                 .padding(.horizontal, 16)
+                .padding(.top, 8)
             }
             .padding(.bottom, 10)
             
@@ -301,12 +363,12 @@ struct CompactBundleOfferView: View {
             // Price + Button row
             HStack {
                 HStack(spacing: 6) {
-                    Text(String(format: "$%.0f", bundle.originalTotal))
+                    Text(String(format: "$%.0f", currentOriginalTotal))
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.secondary)
                         .strikethrough()
                     
-                    Text(String(format: "$%.0f", bundle.discountedTotal))
+                    Text(String(format: "$%.0f", currentDiscountedTotal))
                         .font(.system(size: 16, weight: .bold))
                         .foregroundColor(.primary)
                 }
@@ -316,7 +378,7 @@ struct CompactBundleOfferView: View {
                 Button(action: {
                     withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
                         bundleAdded = true
-                        onAddBundle(bundle.items)
+                        onAddBundle(customItems)
                     }
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         withAnimation { bundleAdded = false }
@@ -345,5 +407,7 @@ struct CompactBundleOfferView: View {
                 .stroke(Color(.systemGray4), lineWidth: 1)
         )
         .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 2)
+        .onAppear { customItems = bundle.items }
+        .onChange(of: bundle.id) { _ in customItems = bundle.items }
     }
 }

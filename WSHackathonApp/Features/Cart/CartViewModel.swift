@@ -85,51 +85,72 @@ final class CartViewModel: ObservableObject {
         }
     }
     
-    // Build a bundle offer from current cart items + complementary product
+    // Build a bundle offer from current cart items + complementary product using ML recommendations
     func buildBundleFromCart() {
-        guard !items.isEmpty, !trendingItems.isEmpty else {
+        guard !items.isEmpty else {
             bundleOffer = nil
             return
         }
         
-        var bundleItems: [BundleItem] = []
-        var usedIds = Set<String>()
-        
-        // Add current cart items (up to 2)
-        for cartItem in items.prefix(2) {
-            bundleItems.append(BundleItem(
-                id: cartItem.id,
-                title: shortTitle(cartItem.title),
-                price: cartItem.price,
-                imageURL: cartItem.imageURL
-            ))
-            usedIds.insert(cartItem.id)
+        Task {
+            let intcartIds = RecommendationService.shared.resolvedIntcartIds(
+                from: items.map { (id: $0.id, title: $0.title) }
+            )
+            
+            do {
+                let response = try await RecommendationService.shared.fetchRecommendations(for: intcartIds)
+                
+                await MainActor.run {
+                    var bundleItems: [BundleItem] = []
+                    var usedIds = Set<String>()
+                    
+                    // Add current cart items (up to 2)
+                    for cartItem in items.prefix(2) {
+                        bundleItems.append(BundleItem(
+                            id: cartItem.id,
+                            title: self.shortTitle(cartItem.title),
+                            price: cartItem.price,
+                            imageURL: cartItem.imageURL
+                        ))
+                        usedIds.insert(cartItem.id)
+                    }
+                    
+                    // Add items from FBT section first
+                    let fbtSections = response.sections.filter { $0.title.localizedCaseInsensitiveContains("frequently") }
+                    let otherSections = response.sections.filter { !$0.title.localizedCaseInsensitiveContains("frequently") && !$0.title.localizedCaseInsensitiveContains("similar") }
+                    
+                    let allSections = fbtSections + otherSections
+                    
+                    for section in allSections {
+                        for item in section.items {
+                            if !usedIds.contains(item.id) && bundleItems.count < 3 {
+                                bundleItems.append(BundleItem(
+                                    id: item.id,
+                                    title: item.name.replacingOccurrences(of: "_", with: " ").capitalized,
+                                    price: Double(item.price),
+                                    imageURL: item.imageURL
+                                ))
+                                usedIds.insert(item.id)
+                            }
+                        }
+                    }
+                    
+                    guard bundleItems.count >= 3 else {
+                        self.bundleOffer = nil
+                        return
+                    }
+                    
+                    self.bundleOffer = BundleOffer(
+                        title: "Bundle & save on your picks",
+                        items: bundleItems,
+                        discountPercent: 15
+                    )
+                }
+            } catch {
+                print("⚠️ Failed to fetch recommendations for bundle: \(error)")
+                await MainActor.run { self.bundleOffer = nil }
+            }
         }
-        
-        // Add complementary items from trending that aren't already in cart
-        let cartIds = Set(items.map(\.id))
-        let complementary = trendingItems.filter { !cartIds.contains($0.id) && !usedIds.contains($0.id) }
-        
-        for item in complementary.prefix(2) {
-            bundleItems.append(BundleItem(
-                id: item.id,
-                title: shortTitle(item.title),
-                price: item.price ?? 0,
-                imageURL: item.imageURL
-            ))
-            usedIds.insert(item.id)
-        }
-        
-        guard bundleItems.count >= 3 else {
-            bundleOffer = nil
-            return
-        }
-        
-        bundleOffer = BundleOffer(
-            title: "Bundle & save on your picks",
-            items: bundleItems,
-            discountPercent: 15
-        )
     }
     
     private func shortTitle(_ title: String) -> String {

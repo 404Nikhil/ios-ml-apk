@@ -1,662 +1,331 @@
 {
-  "pan_0": {
+  "SKU-PAN-001": {
     "type": "pan",
     "category": "cookware",
-    "price": 2924,
-    "name": "pan"
+    "price": 149.95,
+    "name": "GreenPan Reserve Ceramic Nonstick Fry Pan Set, 10\" & 12\"",
+    "image": "/images/pan_1.jpg"
   },
-  "pan_1": {
+  "SKU-PAN-002": {
     "type": "pan",
     "category": "cookware",
-    "price": 4949,
-    "name": "pan"
+    "price": 99.95,
+    "name": "All-Clad HA1 Hard Anodized Nonstick Fry Pan, 12\"",
+    "image": "/images/pan_2.jpg"
   },
-  "pan_2": {
+  "SKU-PAN-003": {
     "type": "pan",
     "category": "cookware",
-    "price": 3786,
-    "name": "pan"
+    "price": 109.95,
+    "name": "Le Creuset Toughened Nonstick PRO Fry Pan, 11\"",
+    "image": "/images/pan_3.jpg"
   },
-  "pan_3": {
+  "SKU-PAN-004": {
     "type": "pan",
     "category": "cookware",
-    "price": 3358,
-    "name": "pan"
+    "price": 249.95,
+    "name": "Staub Enameled Cast Iron Deep Skillet, 12\"",
+    "image": "/images/pan_4.jpg"
   },
-  "pan_4": {
-    "type": "pan",
-    "category": "cookware",
-    "price": 3138,
-    "name": "pan"
-  },
-  "pan_5": {
-    "type": "pan",
-    "category": "cookware",
-    "price": 2051,
-    "name": "pan"
-  },
-  "pan_6": {
-    "type": "pan",
-    "category": "cookware",
-    "price": 4602,
-    "name": "pan"
-  },
-  "pan_7": {
-    "type": "pan",
-    "category": "cookware",
-    "price": 3205,
-    "name": "pan"
-  },
-  "pan_8": {
-    "type": "pan",
-    "category": "cookware",
-    "price": 3545,
-    "name": "pan"
-  },
-  "pan_9": {
-    "type": "pan",
-    "category": "cookware",
-    "price": 928,
-    "name": "pan"
-  },
-  "pot_10": {
+  "SKU-POT-001": {
     "type": "pot",
     "category": "cookware",
-    "price": 1764,
-    "name": "pot"
+    "price": 299.95,
+    "name": "Le Creuset Enameled Cast Iron Soup Pot, 4.5-Qt., White",
+    "image": "/images/pot_1.jpg"
   },
-  "pot_11": {
+  "SKU-POT-002": {
     "type": "pot",
     "category": "cookware",
-    "price": 2071,
-    "name": "pot"
+    "price": 349.95,
+    "name": "Staub Enameled Cast Iron Round Dutch Oven, 7-Qt., Cherry",
+    "image": "/images/pot_2.jpg"
   },
-  "pot_12": {
+  "SKU-POT-003": {
     "type": "pot",
     "category": "cookware",
-    "price": 4120,
-    "name": "pot"
+    "price": 259.95,
+    "name": "All-Clad Stainless-Steel Stockpot, 8-Qt.",
+    "image": "/images/pot_3.jpg"
   },
-  "pot_13": {
+  "SKU-POT-004": {
     "type": "pot",
     "category": "cookware",
-    "price": 2250,
-    "name": "pot"
+    "price": 279.95,
+    "name": "Le Creuset Cast Iron Braiser, 3.5-Qt., Artichaut",
+    "image": "/images/pot_4.jpg"
   },
-  "pot_14": {
+  "SKU-POT-005": {
     "type": "pot",
     "category": "cookware",
-    "price": 1562,
-    "name": "pot"
+    "price": 189.95,
+    "name": "Signature Stainless Steel Saucepan with Lid, 3-Qt.",
+    "image": "/images/pot_5.jpg"
   },
-  "pot_15": {
-    "type": "pot",
-    "category": "cookware",
-    "price": 4208,
-    "name": "pot"
-  },
-  "pot_16": {
-    "type": "pot",
-    "category": "cookware",
-    "price": 2732,
-    "name": "pot"
-  },
-  "pot_17": {
-    "type": "pot",
-    "category": "cookware",
-    "price": 1365,
-    "name": "pot"
-  },
-  "pot_18": {
-    "type": "pot",
-    "category": "cookware",
-    "price": 909,
-    "name": "pot"
-  },
-  "pot_19": {
-    "type": "pot",
-    "category": "cookware",
-    "price": 1311,
-    "name": "pot"
-  },
-  "spatula_20": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 651,
-    "name": "spatula"
-  },
-  "spatula_21": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 639,
-    "name": "spatula"
-  },
-  "spatula_22": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 4293,
-    "name": "spatula"
-  },
-  "spatula_23": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 4486,
-    "name": "spatula"
-  },
-  "spatula_24": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 864,
-    "name": "spatula"
-  },
-  "spatula_25": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 766,
-    "name": "spatula"
-  },
-  "spatula_26": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 4759,
-    "name": "spatula"
-  },
-  "spatula_27": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 2856,
-    "name": "spatula"
-  },
-  "spatula_28": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 2625,
-    "name": "spatula"
-  },
-  "spatula_29": {
-    "type": "spatula",
-    "category": "cookware",
-    "price": 1185,
-    "name": "spatula"
-  },
-  "knife_30": {
+  "SKU-KNF-001": {
     "type": "knife",
     "category": "cookware",
-    "price": 2867,
-    "name": "knife"
+    "price": 449.95,
+    "name": "W\u00fcsthof Performer 7-Piece Knife Block Set",
+    "image": "/images/knife_1.jpg"
   },
-  "knife_31": {
+  "SKU-KNF-002": {
     "type": "knife",
     "category": "cookware",
-    "price": 3651,
-    "name": "knife"
+    "price": 149.95,
+    "name": "Shun Classic Chef's Knife, 8\"",
+    "image": "/images/knife_2.jpg"
   },
-  "knife_32": {
+  "SKU-KNF-003": {
     "type": "knife",
     "category": "cookware",
-    "price": 3085,
-    "name": "knife"
+    "price": 129.95,
+    "name": "W\u00fcsthof Classic Santoku Knife, 7\"",
+    "image": "/images/knife_3.jpg"
   },
-  "knife_33": {
+  "SKU-KNF-004": {
     "type": "knife",
     "category": "cookware",
-    "price": 3870,
-    "name": "knife"
+    "price": 99.95,
+    "name": "Zwilling Pro Bread Knife, 9\"",
+    "image": "/images/knife_4.jpg"
   },
-  "knife_34": {
+  "SKU-KNF-005": {
     "type": "knife",
     "category": "cookware",
-    "price": 1248,
-    "name": "knife"
+    "price": 59.95,
+    "name": "Miyabi Kaizen II Paring Knife, 3.5\"",
+    "image": "/images/knife_5.jpg"
   },
-  "knife_35": {
-    "type": "knife",
-    "category": "cookware",
-    "price": 850,
-    "name": "knife"
-  },
-  "knife_36": {
-    "type": "knife",
-    "category": "cookware",
-    "price": 4521,
-    "name": "knife"
-  },
-  "knife_37": {
-    "type": "knife",
-    "category": "cookware",
-    "price": 1166,
-    "name": "knife"
-  },
-  "knife_38": {
-    "type": "knife",
-    "category": "cookware",
-    "price": 2557,
-    "name": "knife"
-  },
-  "knife_39": {
-    "type": "knife",
-    "category": "cookware",
-    "price": 2620,
-    "name": "knife"
-  },
-  "cutting_board_40": {
+  "SKU-CB-001": {
     "type": "cutting_board",
     "category": "cookware",
-    "price": 3369,
-    "name": "cutting_board"
+    "price": 129.95,
+    "name": "Williams Sonoma Acacia Cutting Board Set, 3-Piece",
+    "image": "/images/cutting_board_1.jpg"
   },
-  "cutting_board_41": {
+  "SKU-CB-002": {
     "type": "cutting_board",
     "category": "cookware",
-    "price": 4907,
-    "name": "cutting_board"
+    "price": 149.95,
+    "name": "Williams Sonoma End-Grain Cutting Board, Walnut, 18\" \u00d7 14\"",
+    "image": "/images/cutting_board_2.jpg"
   },
-  "cutting_board_42": {
+  "SKU-CB-003": {
     "type": "cutting_board",
     "category": "cookware",
-    "price": 2633,
-    "name": "cutting_board"
+    "price": 189.95,
+    "name": "John Boos Maple Carving Board with Groove, 24\" \u00d7 18\"",
+    "image": "/images/cutting_board_3.jpg"
   },
-  "cutting_board_43": {
-    "type": "cutting_board",
+  "SKU-SPT-001": {
+    "type": "spatula",
     "category": "cookware",
-    "price": 2271,
-    "name": "cutting_board"
+    "price": 39.95,
+    "name": "Williams Sonoma Silicone Spatula Set, 4-Piece, Charcoal",
+    "image": "/images/spatula_1.jpg"
   },
-  "cutting_board_44": {
-    "type": "cutting_board",
+  "SKU-SPT-002": {
+    "type": "spatula",
     "category": "cookware",
-    "price": 1085,
-    "name": "cutting_board"
+    "price": 19.95,
+    "name": "Sur La Table Silicone Slotted Turner",
+    "image": "/images/spatula_2.jpg"
   },
-  "cutting_board_45": {
-    "type": "cutting_board",
+  "SKU-SPT-003": {
+    "type": "spatula",
     "category": "cookware",
-    "price": 3258,
-    "name": "cutting_board"
+    "price": 12.95,
+    "name": "OXO Good Grips Silicone Flexible Turner",
+    "image": "/images/spatula_3.jpg"
   },
-  "cutting_board_46": {
-    "type": "cutting_board",
-    "category": "cookware",
-    "price": 1712,
-    "name": "cutting_board"
-  },
-  "cutting_board_47": {
-    "type": "cutting_board",
-    "category": "cookware",
-    "price": 791,
-    "name": "cutting_board"
-  },
-  "cutting_board_48": {
-    "type": "cutting_board",
-    "category": "cookware",
-    "price": 3039,
-    "name": "cutting_board"
-  },
-  "cutting_board_49": {
-    "type": "cutting_board",
-    "category": "cookware",
-    "price": 1959,
-    "name": "cutting_board"
-  },
-  "sofa_50": {
+  "SKU-SOFA-001": {
     "type": "sofa",
     "category": "furniture",
-    "price": 3629,
-    "name": "sofa"
+    "price": 2999.0,
+    "name": "Harlow Curved Velvet Sofa, Camel",
+    "image": "/images/sofa_1.jpg"
   },
-  "sofa_51": {
+  "SKU-SOFA-002": {
     "type": "sofa",
     "category": "furniture",
-    "price": 2319,
-    "name": "sofa"
+    "price": 2499.0,
+    "name": "Milo Upholstered Sofa, Linen, Oatmeal",
+    "image": "/images/sofa_2.jpg"
   },
-  "sofa_52": {
+  "SKU-SOFA-003": {
     "type": "sofa",
     "category": "furniture",
-    "price": 2539,
-    "name": "sofa"
+    "price": 3599.0,
+    "name": "Andover Tufted Sofa, Performance Linen, Navy",
+    "image": "/images/sofa_3.jpg"
   },
-  "sofa_53": {
+  "SKU-SOFA-004": {
     "type": "sofa",
     "category": "furniture",
-    "price": 2535,
-    "name": "sofa"
+    "price": 4799.0,
+    "name": "Belgrave Leather Sofa, Cognac",
+    "image": "/images/sofa_4.jpg"
   },
-  "sofa_54": {
+  "SKU-SOFA-005": {
     "type": "sofa",
     "category": "furniture",
-    "price": 762,
-    "name": "sofa"
+    "price": 3299.0,
+    "name": "Huxley Boucle Sofa, Ivory",
+    "image": "/images/sofa_5.jpg"
   },
-  "sofa_55": {
-    "type": "sofa",
-    "category": "furniture",
-    "price": 2487,
-    "name": "sofa"
-  },
-  "sofa_56": {
-    "type": "sofa",
-    "category": "furniture",
-    "price": 2918,
-    "name": "sofa"
-  },
-  "sofa_57": {
-    "type": "sofa",
-    "category": "furniture",
-    "price": 3485,
-    "name": "sofa"
-  },
-  "sofa_58": {
-    "type": "sofa",
-    "category": "furniture",
-    "price": 4330,
-    "name": "sofa"
-  },
-  "sofa_59": {
-    "type": "sofa",
-    "category": "furniture",
-    "price": 1006,
-    "name": "sofa"
-  },
-  "chair_60": {
+  "SKU-CHR-001": {
     "type": "chair",
     "category": "furniture",
-    "price": 2755,
-    "name": "chair"
+    "price": 1349.0,
+    "name": "Bobbin Armchair, Striped Linen, Sage",
+    "image": "/images/chair_1.jpg"
   },
-  "chair_61": {
+  "SKU-CHR-002": {
     "type": "chair",
     "category": "furniture",
-    "price": 2413,
-    "name": "chair"
+    "price": 1649.0,
+    "name": "Essex Wingback Chair, Velvet, Emerald",
+    "image": "/images/chair_2.jpg"
   },
-  "chair_62": {
+  "SKU-CHR-003": {
     "type": "chair",
     "category": "furniture",
-    "price": 4579,
-    "name": "chair"
+    "price": 1999.0,
+    "name": "Lancaster Leather Club Chair, Chestnut",
+    "image": "/images/chair_3.jpg"
   },
-  "chair_63": {
+  "SKU-CHR-004": {
     "type": "chair",
     "category": "furniture",
-    "price": 2750,
-    "name": "chair"
+    "price": 749.0,
+    "name": "Waverly Upholstered Dining Chair, Set of 2",
+    "image": "/images/chair_4.jpg"
   },
-  "chair_64": {
+  "SKU-CHR-005": {
     "type": "chair",
     "category": "furniture",
-    "price": 3600,
-    "name": "chair"
+    "price": 999.0,
+    "name": "Harrington Rattan Accent Chair, Natural",
+    "image": "/images/chair_5.jpg"
   },
-  "chair_65": {
-    "type": "chair",
-    "category": "furniture",
-    "price": 1072,
-    "name": "chair"
-  },
-  "chair_66": {
-    "type": "chair",
-    "category": "furniture",
-    "price": 3139,
-    "name": "chair"
-  },
-  "chair_67": {
-    "type": "chair",
-    "category": "furniture",
-    "price": 4721,
-    "name": "chair"
-  },
-  "chair_68": {
-    "type": "chair",
-    "category": "furniture",
-    "price": 535,
-    "name": "chair"
-  },
-  "chair_69": {
-    "type": "chair",
-    "category": "furniture",
-    "price": 3423,
-    "name": "chair"
-  },
-  "coffee_table_70": {
+  "SKU-CT-001": {
     "type": "coffee_table",
     "category": "furniture",
-    "price": 2438,
-    "name": "coffee_table"
+    "price": 1599.0,
+    "name": "Pedestal Round Coffee Table, White Oak, Set of 2",
+    "image": "/images/coffee_table_1.jpg"
   },
-  "coffee_table_71": {
+  "SKU-CT-002": {
     "type": "coffee_table",
     "category": "furniture",
-    "price": 1367,
-    "name": "coffee_table"
+    "price": 1899.0,
+    "name": "Marble Top Coffee Table, Brass Base, 42\"",
+    "image": "/images/coffee_table_2.jpg"
   },
-  "coffee_table_72": {
+  "SKU-CT-003": {
     "type": "coffee_table",
     "category": "furniture",
-    "price": 4284,
-    "name": "coffee_table"
+    "price": 1249.0,
+    "name": "Driftwood Round Coffee Table, Weathered, 36\"",
+    "image": "/images/coffee_table_3.jpg"
   },
-  "coffee_table_73": {
+  "SKU-CT-004": {
     "type": "coffee_table",
     "category": "furniture",
-    "price": 2584,
-    "name": "coffee_table"
+    "price": 2399.0,
+    "name": "Walnut Live-Edge Coffee Table, 48\"",
+    "image": "/images/coffee_table_4.jpg"
   },
-  "coffee_table_74": {
+  "SKU-CT-005": {
     "type": "coffee_table",
     "category": "furniture",
-    "price": 4180,
-    "name": "coffee_table"
+    "price": 1399.0,
+    "name": "Stone Drum Coffee Table, Ivory, 32\"",
+    "image": "/images/coffee_table_5.jpg"
   },
-  "coffee_table_75": {
-    "type": "coffee_table",
-    "category": "furniture",
-    "price": 658,
-    "name": "coffee_table"
-  },
-  "coffee_table_76": {
-    "type": "coffee_table",
-    "category": "furniture",
-    "price": 4763,
-    "name": "coffee_table"
-  },
-  "coffee_table_77": {
-    "type": "coffee_table",
-    "category": "furniture",
-    "price": 1327,
-    "name": "coffee_table"
-  },
-  "coffee_table_78": {
-    "type": "coffee_table",
-    "category": "furniture",
-    "price": 1742,
-    "name": "coffee_table"
-  },
-  "coffee_table_79": {
-    "type": "coffee_table",
-    "category": "furniture",
-    "price": 1102,
-    "name": "coffee_table"
-  },
-  "table_80": {
+  "SKU-TBL-001": {
     "type": "table",
     "category": "dining",
-    "price": 4124,
-    "name": "table"
+    "price": 4299.0,
+    "name": "Tulip Oval Dining Table, Carrara Marble, Brass Base, 72\"",
+    "image": "/images/table_1.jpg"
   },
-  "table_81": {
+  "SKU-TBL-002": {
     "type": "table",
     "category": "dining",
-    "price": 1033,
-    "name": "table"
+    "price": 2899.0,
+    "name": "Farmhouse Reclaimed Wood Dining Table, 84\"",
+    "image": "/images/table_2.jpg"
   },
-  "table_82": {
+  "SKU-TBL-003": {
     "type": "table",
     "category": "dining",
-    "price": 4926,
-    "name": "table"
+    "price": 3399.0,
+    "name": "Walnut Extending Dining Table, 60\"\u201384\"",
+    "image": "/images/table_3.jpg"
   },
-  "table_83": {
+  "SKU-TBL-004": {
     "type": "table",
     "category": "dining",
-    "price": 3165,
-    "name": "table"
+    "price": 2399.0,
+    "name": "Glass Top Trestle Dining Table, Iron Base, 72\"",
+    "image": "/images/table_4.jpg"
   },
-  "table_84": {
-    "type": "table",
-    "category": "dining",
-    "price": 4267,
-    "name": "table"
-  },
-  "table_85": {
-    "type": "table",
-    "category": "dining",
-    "price": 1119,
-    "name": "table"
-  },
-  "table_86": {
-    "type": "table",
-    "category": "dining",
-    "price": 3013,
-    "name": "table"
-  },
-  "table_87": {
-    "type": "table",
-    "category": "dining",
-    "price": 3336,
-    "name": "table"
-  },
-  "table_88": {
-    "type": "table",
-    "category": "dining",
-    "price": 813,
-    "name": "table"
-  },
-  "table_89": {
-    "type": "table",
-    "category": "dining",
-    "price": 1534,
-    "name": "table"
-  },
-  "plate_90": {
+  "SKU-PLT-001": {
     "type": "plate",
     "category": "dining",
-    "price": 1688,
-    "name": "plate"
+    "price": 74.95,
+    "name": "Berry Meadow Porcelain Salad Plates, Set of 5",
+    "image": "/images/plate_1.jpg"
   },
-  "plate_91": {
+  "SKU-PLT-002": {
     "type": "plate",
     "category": "dining",
-    "price": 4082,
-    "name": "plate"
+    "price": 64.95,
+    "name": "Artisan Stoneware Dinner Plates, Set of 4, Fog",
+    "image": "/images/plate_2.jpg"
   },
-  "plate_92": {
+  "SKU-PLT-003": {
     "type": "plate",
     "category": "dining",
-    "price": 4552,
-    "name": "plate"
+    "price": 19.95,
+    "name": "Apilco Tradition Porcelain Dinner Plate, White, Each",
+    "image": "/images/plate_3.jpg"
   },
-  "plate_93": {
+  "SKU-PLT-004": {
     "type": "plate",
     "category": "dining",
-    "price": 1250,
-    "name": "plate"
+    "price": 84.95,
+    "name": "Rustic Hand-Painted Ceramic Plates, Set of 4",
+    "image": "/images/plate_4.jpg"
   },
-  "plate_94": {
+  "SKU-PLT-005": {
     "type": "plate",
     "category": "dining",
-    "price": 3718,
-    "name": "plate"
+    "price": 129.95,
+    "name": "Goldrim Bone China Charger Plates, Set of 4",
+    "image": "/images/plate_5.jpg"
   },
-  "plate_95": {
-    "type": "plate",
-    "category": "dining",
-    "price": 4780,
-    "name": "plate"
-  },
-  "plate_96": {
-    "type": "plate",
-    "category": "dining",
-    "price": 4034,
-    "name": "plate"
-  },
-  "plate_97": {
-    "type": "plate",
-    "category": "dining",
-    "price": 3835,
-    "name": "plate"
-  },
-  "plate_98": {
-    "type": "plate",
-    "category": "dining",
-    "price": 1186,
-    "name": "plate"
-  },
-  "plate_99": {
-    "type": "plate",
-    "category": "dining",
-    "price": 770,
-    "name": "plate"
-  },
-  "glass_100": {
+  "SKU-GLS-001": {
     "type": "glass",
     "category": "dining",
-    "price": 916,
-    "name": "glass"
+    "price": 74.95,
+    "name": "Dorset Martini Glasses, Set of 4",
+    "image": "/images/glass_1.jpg"
   },
-  "glass_101": {
+  "SKU-GLS-002": {
     "type": "glass",
     "category": "dining",
-    "price": 1468,
-    "name": "glass"
+    "price": 99.95,
+    "name": "Estate Wine Glasses, Set of 6, Bordeaux",
+    "image": "/images/glass_2.jpg"
   },
-  "glass_102": {
+  "SKU-GLS-003": {
     "type": "glass",
     "category": "dining",
-    "price": 1365,
-    "name": "glass"
-  },
-  "glass_103": {
-    "type": "glass",
-    "category": "dining",
-    "price": 3202,
-    "name": "glass"
-  },
-  "glass_104": {
-    "type": "glass",
-    "category": "dining",
-    "price": 1110,
-    "name": "glass"
-  },
-  "glass_105": {
-    "type": "glass",
-    "category": "dining",
-    "price": 2421,
-    "name": "glass"
-  },
-  "glass_106": {
-    "type": "glass",
-    "category": "dining",
-    "price": 4848,
-    "name": "glass"
-  },
-  "glass_107": {
-    "type": "glass",
-    "category": "dining",
-    "price": 3421,
-    "name": "glass"
-  },
-  "glass_108": {
-    "type": "glass",
-    "category": "dining",
-    "price": 1728,
-    "name": "glass"
-  },
-  "glass_109": {
-    "type": "glass",
-    "category": "dining",
-    "price": 2811,
-    "name": "glass"
+    "price": 59.95,
+    "name": "Handblown Double Old-Fashioned Glasses, Set of 4",
+    "image": "/images/glass_3.jpg"
   }
 }

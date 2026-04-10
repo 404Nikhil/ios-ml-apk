@@ -79,23 +79,7 @@ def pick_best_product(product_list):
     return sorted(product_list, key=lambda x: products[x]["price"])[0]
 
 
-# 🔥 FINAL IMAGE FIX (TYPE-BASED)
-def get_image_path(item):
-    t = products[item]["type"]
-
-    image_dir = os.path.join(BASE_DIR, "images")
-
-    # find all images that start with type
-    candidates = [
-        f for f in os.listdir(image_dir)
-        if f.startswith(t) and f.endswith(".jpg")
-    ]
-
-    if candidates:
-        chosen = random.choice(candidates)  # or sorted(candidates)[0]
-        return f"/images/{chosen}"
-
-    return "/images/default.jpg"
+# removed get_image_path because we read true frontend image paths from products.json directly
 
 
 def format_items(items):
@@ -111,7 +95,7 @@ def format_items(items):
             "type": products[item]["type"],
             "category": products[item]["category"],
             "price": products[item]["price"],
-            "image": get_image_path(item)
+            "image": products[item].get("image", "/images/default.jpg")
         })
 
     return res

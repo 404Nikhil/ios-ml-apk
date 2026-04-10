@@ -14,6 +14,7 @@ This is the Smart eCommerce frontend for the AITHON 2026 hackathon. It features 
 - **Git**
 - **Python 3.9+** (for the ML backend)
 
+
 ### 1. Clone the Project
 ```bash
 git clone https://github.com/wigglevig/AI-THON.git

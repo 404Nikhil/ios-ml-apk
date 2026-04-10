@@ -146,7 +146,7 @@ final class ProductDetailViewModel: ObservableObject {
         
         for section in allSections {
             for item in section.items {
-                if !usedIds.contains(item.id) && bundleItems.count < 4 {
+                if !usedIds.contains(item.id) && bundleItems.count < 3 {
                     bundleItems.append(BundleItem(
                         id: item.id,
                         title: item.name.replacingOccurrences(of: "_", with: " ").capitalized,

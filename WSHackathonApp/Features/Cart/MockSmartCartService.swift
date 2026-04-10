@@ -15,9 +15,9 @@ class MockSmartCartService {
         
         // Mock JSON response
         return [
-            ProductItem(id: "101", title: "Wireless Charging Pad", price: 29.99, path: nil),
-            ProductItem(id: "102", title: "Premium Screen Protector", price: 14.99, path: nil),
-            ProductItem(id: "103", title: "Noise Cancelling Earbuds", price: 89.99, path: nil)
+            ProductItem(id: "101", title: "Wireless Charging Pad", price: 29.99, path: nil, brand: nil, productType: nil),
+            ProductItem(id: "102", title: "Premium Screen Protector", price: 14.99, path: nil, brand: nil, productType: nil),
+            ProductItem(id: "103", title: "Noise Cancelling Earbuds", price: 89.99, path: nil, brand: nil, productType: nil)
         ]
     }
     
@@ -25,8 +25,8 @@ class MockSmartCartService {
     func fetchTrendingItems() async throws -> [ProductItem] {
         try await Task.sleep(nanoseconds: 800_000_000)
         return [
-            ProductItem(id: "201", title: "Smart Watch Series X", price: 199.99, path: nil),
-            ProductItem(id: "202", title: "Ergonomic Mouse", price: 45.00, path: nil)
+            ProductItem(id: "201", title: "Smart Watch Series X", price: 199.99, path: nil, brand: nil, productType: nil),
+            ProductItem(id: "202", title: "Ergonomic Mouse", price: 45.00, path: nil, brand: nil, productType: nil)
         ]
     }
 }

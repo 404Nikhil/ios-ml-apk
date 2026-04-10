@@ -51,7 +51,7 @@ struct BundleItem: Identifiable {
         } else {
             path = nil
         }
-        return ProductItem(id: id, title: title, price: price, path: path)
+        return ProductItem(id: id, title: title, price: price, path: path, brand: nil, productType: nil)
     }
 }
 

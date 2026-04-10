@@ -92,7 +92,28 @@ class HomeViewModel: ObservableObject {
     var filteredProducts: [ProductItem] {
         // If there is search text, we search across ALL products, ignoring the category filter
         if !debouncedSearchText.isEmpty {
-            return products.filter { $0.title.localizedCaseInsensitiveContains(debouncedSearchText) }
+            let search = debouncedSearchText.lowercased()
+            
+            // Find if the search term matches any category names
+            let matchingCategories = Self.categories.filter { $0.name.localizedCaseInsensitiveContains(search) }
+            
+            return products.filter { product in
+                let titleLower = product.title.lowercased()
+                
+                // 1. Matches standard fields
+                let matchesFields = titleLower.contains(search) ||
+                    (product.brand?.localizedCaseInsensitiveContains(search) ?? false) ||
+                    (product.productType?.localizedCaseInsensitiveContains(search) ?? false)
+                
+                // 2. Matches category keywords
+                let matchesCategory = matchingCategories.contains { category in
+                    category.keywords.contains { keyword in
+                        titleLower.contains(keyword)
+                    }
+                }
+                
+                return matchesFields || matchesCategory
+            }
         }
         
         // If no search text, we apply the category filter normally

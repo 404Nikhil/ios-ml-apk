@@ -24,6 +24,8 @@ struct ProductItem: Identifiable, Codable, Sendable, Equatable {
     let title: String
     let price: Double?
     let path: String?
+    let brand: String?
+    let productType: String?
     
     var imageURL: URL? {
         if let imageUrl = path {
@@ -37,6 +39,8 @@ extension ProductItem {
     init(from dto: ProductItemDTO) {
         self.id = dto.id
         self.title = dto.name
+        self.brand = dto.properties?.brand
+        self.productType = dto.properties?.productType
         
         // Price formatting: use regularPrice if available
         if let priceValue = dto.price?.regularPrice {

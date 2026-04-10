@@ -20,6 +20,7 @@ git clone https://github.com/wigglevig/AI-THON.git
 cd AI-THON
 ```
 
+
 ### 2. Setup the Backend
 The app relies on the `intcart_backend` to serve products and recommendations.
 ```bash

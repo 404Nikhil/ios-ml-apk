@@ -127,11 +127,15 @@ private struct RecommendationProductCard: View {
 
                     // + Add button
                     Button {
+                        // 1. Animate local checkmark
                         withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
                             addedToCart = true
-                            onAdd(item)
                         }
-                        // Reset checkmark after 1.5s
+                        
+                        // 2. Trigger global cart add (CartView handles this animation)
+                        onAdd(item)
+                        
+                        // 3. Reset checkmark after 1.5s
                         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
                             withAnimation { addedToCart = false }
                         }

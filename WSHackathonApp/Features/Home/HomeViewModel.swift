@@ -22,6 +22,7 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
     @Published var selectedCategory: ProductCategory? = nil
+    @Published var filterState = ProductFilterState()
     
     private var hasLoaded = false
     private var cartRepository: CartRepository?
@@ -47,6 +48,18 @@ class HomeViewModel: ObservableObject {
         ProductCategory(name: "Tools", icon: "wrench.and.screwdriver", keywords: ["spatula", "tong", "whisk", "peeler", "grater", "ladle", "turner", "tool", "utensil"]),
         ProductCategory(name: "Electrics", icon: "bolt", keywords: ["blender", "mixer", "processor", "toaster", "espresso", "machine", "electric"]),
     ]
+    
+    // MARK: - Filter Metadata
+    
+    /// Dynamically extracts available product types from the loaded catalog.
+    var availableProductTypes: [String] {
+        ProductFilterEngine.extractAvailableTypes(from: products)
+    }
+    
+    /// Returns the min–max price extent of the loaded catalog.
+    var priceBounds: ClosedRange<Double> {
+        ProductFilterEngine.priceExtent(of: products)
+    }
 
     func bind(cartRepository: CartRepository,
               registryRepository: RegistryRepository) {
@@ -87,25 +100,27 @@ class HomeViewModel: ObservableObject {
         registryRepository?.currentRegistry?.items.first(where: { $0.id == product.id })?.quantity ?? 0
     }
     
-    // MARK: - Filtering
+    // MARK: - Filtering Pipeline
+    //
+    // Order: Search → Category → Filter Engine (price, type, sort)
 
     var filteredProducts: [ProductItem] {
-        // If there is search text, we search across ALL products, ignoring the category filter
+        var result: [ProductItem]
+        
+        // Step 1: Search (global, ignoring category)
         if !debouncedSearchText.isEmpty {
             let search = debouncedSearchText.lowercased()
             
             // Find if the search term matches any category names
             let matchingCategories = Self.categories.filter { $0.name.localizedCaseInsensitiveContains(search) }
             
-            return products.filter { product in
+            result = products.filter { product in
                 let titleLower = product.title.lowercased()
                 
-                // 1. Matches standard fields
                 let matchesFields = titleLower.contains(search) ||
                     (product.brand?.localizedCaseInsensitiveContains(search) ?? false) ||
                     (product.productType?.localizedCaseInsensitiveContains(search) ?? false)
                 
-                // 2. Matches category keywords
                 let matchesCategory = matchingCategories.contains { category in
                     category.keywords.contains { keyword in
                         titleLower.contains(keyword)
@@ -114,16 +129,19 @@ class HomeViewModel: ObservableObject {
                 
                 return matchesFields || matchesCategory
             }
-        }
-        
-        // If no search text, we apply the category filter normally
-        var result = products
-        if let cat = selectedCategory, !cat.keywords.isEmpty {
-            result = result.filter { product in
-                let title = product.title.lowercased()
-                return cat.keywords.contains(where: { title.contains($0) })
+        } else {
+            // Step 2: Category filter (when no search text)
+            result = products
+            if let cat = selectedCategory, !cat.keywords.isEmpty {
+                result = result.filter { product in
+                    let title = product.title.lowercased()
+                    return cat.keywords.contains(where: { title.contains($0) })
+                }
             }
         }
+        
+        // Step 3: Apply filter engine (price, type, sort)
+        result = ProductFilterEngine.apply(filterState, to: result)
         
         return result
     }

@@ -15,6 +15,7 @@ struct CustomAsyncImage: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
+                    .clipped()
             } else if loader.hasFailed || url == nil {
                 // Show a clean placeholder on error or missing URL
                 ZStack {

@@ -23,6 +23,7 @@ struct HomeView: View {
     @EnvironmentObject var tabBarVM: WSTabBarViewModel
     
     @State private var showContent = false
+    @State private var showFilterSheet = false
     
     var body: some View {
         NavigationStack {
@@ -100,21 +101,60 @@ struct HomeView: View {
     
     private var searchBarSection: some View {
         HStack(spacing: 10) {
-            Image(systemName: "magnifyingglass")
-                .font(.system(size: 15, weight: .medium))
-                .foregroundColor(Color(.systemGray2))
+            HStack(spacing: 10) {
+                Image(systemName: "magnifyingglass")
+                    .font(.system(size: 15, weight: .medium))
+                    .foregroundColor(Color(.systemGray2))
+                
+                TextField(AppStrings.Home.searchPlaceHolder, text: $viewModel.searchText)
+                    .font(.system(size: 14))
+            }
+            .padding(.horizontal, 14)
+            .padding(.vertical, 11)
+            .background(
+                RoundedRectangle(cornerRadius: 12)
+                    .fill(Color.white)
+                    .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 2)
+            )
             
-            TextField(AppStrings.Home.searchPlaceHolder, text: $viewModel.searchText)
-                .font(.system(size: 14))
+            // Filter Button
+            Button {
+                showFilterSheet = true
+            } label: {
+                ZStack(alignment: .topTrailing) {
+                    Image(systemName: "line.3.horizontal.decrease.circle")
+                        .font(.system(size: 22, weight: .medium))
+                        .foregroundColor(.wsDark)
+                        .frame(width: 42, height: 42)
+                        .background(
+                            RoundedRectangle(cornerRadius: 12)
+                                .fill(Color.white)
+                                .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 2)
+                        )
+                    
+                    // Active filter badge
+                    if viewModel.filterState.activeFilterCount > 0 {
+                        Text("\(viewModel.filterState.activeFilterCount)")
+                            .font(.system(size: 9, weight: .bold))
+                            .foregroundColor(.white)
+                            .frame(width: 16, height: 16)
+                            .background(Circle().fill(Color.wsGold))
+                            .offset(x: 4, y: -4)
+                    }
+                }
+            }
+            .buttonStyle(.plain)
         }
-        .padding(.horizontal, 14)
-        .padding(.vertical, 11)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .fill(Color.white)
-                .shadow(color: Color.black.opacity(0.04), radius: 6, x: 0, y: 2)
-        )
         .padding(.horizontal, 16)
+        .sheet(isPresented: $showFilterSheet) {
+            ProductFilterSheet(
+                filterState: $viewModel.filterState,
+                availableTypes: viewModel.availableProductTypes,
+                priceBounds: viewModel.priceBounds,
+                onApply: { /* filters applied via binding */ }
+            )
+            .presentationDetents([.large])
+        }
     }
     
     // MARK: - Hero Banner
@@ -283,9 +323,17 @@ struct HomeView: View {
                 
                 Spacer()
                 
-                Text("\(viewModel.filteredProducts.count) items")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(Color(.systemGray))
+                HStack(spacing: 6) {
+                    Text("\(viewModel.filteredProducts.count) items")
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundColor(Color(.systemGray))
+                    
+                    if viewModel.filterState.activeFilterCount > 0 {
+                        Text("• \(viewModel.filterState.activeFilterCount) filter\(viewModel.filterState.activeFilterCount > 1 ? "s" : "")")
+                            .font(.system(size: 11, weight: .semibold))
+                            .foregroundColor(.wsGold)
+                    }
+                }
             }
             .padding(.horizontal, 16)
             

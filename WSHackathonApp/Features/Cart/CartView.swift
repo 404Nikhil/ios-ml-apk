@@ -174,6 +174,7 @@ struct CartView: View {
                                         }
                                     }
                                 )
+                                .id("ML_Recommendations")
                                 .listRowInsets(EdgeInsets())
                             }
                             .listRowBackground(Color.clear)

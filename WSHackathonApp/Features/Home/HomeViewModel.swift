@@ -134,6 +134,10 @@ class HomeViewModel: ObservableObject {
     }
     
     func selectCategory(_ category: ProductCategory) {
+        // Clear search when a category is explicitly selected
+        searchText = ""
+        debouncedSearchText = ""
+        
         if category.keywords.isEmpty {
             // "All" category
             selectedCategory = nil

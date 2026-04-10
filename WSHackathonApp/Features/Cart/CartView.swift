@@ -85,20 +85,26 @@ struct CartView: View {
                             } else {
                                 LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 16) {
                                     ForEach(viewModel.trendingItems.prefix(10)) { item in
-                                        ProductCardView(
+                                        NavigationLink(destination: ProductDetailView(
                                             product: item,
-                                            quantity: viewModel.quantity(for: item),
-                                            registryQuantity: 0,
-                                            onAdd: { 
-                                                withAnimation(.spring()) {
-                                                    viewModel.addToCart(item) 
-                                                }
-                                            },
-                                            onRemove: { viewModel.removeFromCart(item) },
-                                            onAddToRegistry: { },
-                                            onRemoveFromRegistry: { }
-                                        )
-                                        .transition(.scale.combined(with: .opacity))
+                                            allProducts: viewModel.trendingItems
+                                        )) {
+                                            ProductCardView(
+                                                product: item,
+                                                quantity: viewModel.quantity(for: item),
+                                                registryQuantity: 0,
+                                                onAdd: { 
+                                                    withAnimation(.spring()) {
+                                                        viewModel.addToCart(item) 
+                                                    }
+                                                },
+                                                onRemove: { viewModel.removeFromCart(item) },
+                                                onAddToRegistry: { },
+                                                onRemoveFromRegistry: { }
+                                            )
+                                            .transition(.scale.combined(with: .opacity))
+                                        }
+                                        .buttonStyle(.plain)
                                     }
                                 }
                                 .padding(.horizontal)

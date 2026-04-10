@@ -38,7 +38,7 @@
 		75B248EA2F7FAA4E00AD2FA7 = {
 			isa = PBXGroup;
 			children = (
-				75B248F52F7FAA4E00AD2FA7 /* . */,
+				75B248F52F7FAA4E00AD2FA7 /* WSHackathonApp */,
 				75B248F42F7FAA4E00AD2FA7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -67,7 +67,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				75B248F52F7FAA4E00AD2FA7 /* . */,
+				75B248F52F7FAA4E00AD2FA7 /* WSHackathonApp */,
 			);
 			name = WSHackathonApp;
 			packageProductDependencies = (

@@ -46,21 +46,27 @@ struct HomeView: View {
                             
                             LazyVGrid(columns: columns, spacing: spacing) {
                                 ForEach(viewModel.filteredProducts) { product in
-                                    ProductCardView(
+                                    NavigationLink(destination: ProductDetailView(
                                         product: product,
-                                        quantity: viewModel.quantity(for: product),
-                                        registryQuantity: viewModel.registryQuantity(for: product),
-                                        onAdd: { viewModel.addToCart(product) },
-                                        onRemove: { viewModel.removeFromCart(product) },
-                                        onAddToRegistry: {
-                                            if viewModel.canAddToRegistry(product) {
-                                                viewModel.addToRegistry(product)
-                                            } else {
-                                                tabBarVM.selectTab(.registry)
-                                            }                                            
-                                        },
-                                        onRemoveFromRegistry: { viewModel.removeFromRegistry(product) }
-                                    )
+                                        allProducts: viewModel.products
+                                    )) {
+                                        ProductCardView(
+                                            product: product,
+                                            quantity: viewModel.quantity(for: product),
+                                            registryQuantity: viewModel.registryQuantity(for: product),
+                                            onAdd: { viewModel.addToCart(product) },
+                                            onRemove: { viewModel.removeFromCart(product) },
+                                            onAddToRegistry: {
+                                                if viewModel.canAddToRegistry(product) {
+                                                    viewModel.addToRegistry(product)
+                                                } else {
+                                                    tabBarVM.selectTab(.registry)
+                                                }                                            
+                                            },
+                                            onRemoveFromRegistry: { viewModel.removeFromRegistry(product) }
+                                        )
+                                    }
+                                    .buttonStyle(.plain)
                                 }
                             }
                             .padding(.horizontal, 16)

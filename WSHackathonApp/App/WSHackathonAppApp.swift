@@ -19,6 +19,9 @@ struct WSHackathonAppApp: App {
                 .environmentObject(registryRepo)
                 .environmentObject(cartRepo)
                 .environmentObject(tabBarVM)
+                .onAppear {
+                    tabBarVM.bind(cartRepository: cartRepo)
+                }
         }
     }
 }

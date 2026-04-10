@@ -11,6 +11,16 @@ import re
 import math
 from collections import Counter
 from gensim.models import Word2Vec
+from pydantic import BaseModel
+from sentence_transformers import SentenceTransformer
+
+nlp_model = None
+nlp_index = None
+nlp_id_map = None
+
+class ChatRequest(BaseModel):
+    message: str
+    context_items: list[str] = []
 
 app = FastAPI()
 
@@ -375,3 +385,111 @@ def smart_filters(query: str):
             })
             
     return {"suggestedFilters": final_filters[:8]}
+
+@app.post("/chat")
+def chat_endpoint(req: ChatRequest):
+    global nlp_model, nlp_index, nlp_id_map
+    if nlp_model is None:
+        print("Lazy loading NLP models...")
+        nlp_model = SentenceTransformer("all-MiniLM-L6-v2")
+        nlp_index = faiss.read_index(os.path.join(BASE_DIR, "data/nlp_faiss.index"))
+        with open(os.path.join(BASE_DIR, "data/nlp_id_map.pkl"), "rb") as f:
+            nlp_id_map = pickle.load(f)
+            
+    msg = req.message.lower()
+    
+    # State Manipulation Logic against active Chat Memory
+    is_modifier = "remove" in msg or "add" in msg or "keep" in msg
+    if is_modifier and req.context_items:
+        current = set(req.context_items)
+        parts = re.split(r'\band\b|\bor\b|,', msg)
+        for p in parts:
+            p = p.strip()
+            if "remove" in p or "delete" in p or "drop" in p:
+                kw = p.replace("remove", "").replace("delete", "").replace("drop", "").strip()
+                if kw:
+                    vec = nlp_model.encode([kw], convert_to_numpy=True)
+                    faiss.normalize_L2(vec)
+                    D, I = nlp_index.search(vec, 1)
+                    if I[0][0] != -1:
+                        target = nlp_id_map[I[0][0]]
+                        if target in current:
+                            current.remove(target)
+            elif "add" in p or "include" in p:
+                kw = p.replace("add", "").replace("include", "").strip()
+                if kw:
+                    vec = nlp_model.encode([kw], convert_to_numpy=True)
+                    faiss.normalize_L2(vec)
+                    D, I = nlp_index.search(vec, 1)
+                    if I[0][0] != -1 and float(D[0][0]) >= 0.35:
+                        current.add(nlp_id_map[I[0][0]])
+        
+        item_ids = list(current)
+        return {
+           "response": "I've carefully updated your custom bundle exactly as requested!",
+           "items": format_items(item_ids),
+           "isBundle": True
+        }
+        
+    # Split compound queries accurately
+    splits = [s.strip() for s in re.split(r'\band\b|\bor\b|\bwith\b|,', msg) if s.strip()]
+    
+    # Fallback to pure noun extraction for unpunctuated lists ("pan knife pot")
+    keywords = ["pan", "pot", "knife", "spatula", "board", "sofa", "chair", "table", "desk"]
+    found_kws = [kw for kw in keywords if kw in msg]
+    if len(found_kws) > len(splits):
+        splits = found_kws
+    
+    is_bundle = False
+    item_ids = []
+    meta_tags = ["set", "bundle", "complete", "collection", "whole"]
+    has_meta_tag = any(t in msg for t in meta_tags)
+    
+    if len(splits) > 1:
+        # Multi-query logic
+        is_bundle = True
+        for q in splits:
+            if len(q) < 2: continue
+            q_vec = nlp_model.encode([q], convert_to_numpy=True)
+            faiss.normalize_L2(q_vec)
+            D, I = nlp_index.search(q_vec, 1)
+            # Anti-hallucination threshold applied mathematically
+            if I[0][0] != -1 and float(D[0][0]) >= 0.35:
+                item_ids.append(nlp_id_map[I[0][0]])
+    else:
+        # Singular semantic logic
+        query_vec = nlp_model.encode([req.message], convert_to_numpy=True)
+        faiss.normalize_L2(query_vec)
+        D, I = nlp_index.search(query_vec, 5)
+        for dist, idx in zip(D[0], I[0]):
+            if idx != -1 and dist >= 0.35:
+                item_ids.append(nlp_id_map[idx])
+        if has_meta_tag and len(item_ids) > 1:
+            is_bundle = True
+            
+    # Purge any duplicates
+    item_ids = list(dict.fromkeys(item_ids))
+    
+    if len(item_ids) == 0:
+        return {
+            "response": "I specialize strictly in premium kitchenware and elegant furniture, so I couldn't find any products in my catalog matching that!",
+            "items": [],
+            "isBundle": False
+        }
+
+    text = "I've carefully curated these recommendations that best fit what you're looking for:"
+    if is_bundle:
+        text = "I built this special custom bundle perfectly containing everything you requested!"
+    elif any(k in msg for k in ["cook", "pan", "pot", "skillet"]):
+        text = "I'd recommend these premium cookware items for your kitchen:"
+    elif any(k in msg for k in ["knife", "cut", "chop"]):
+        text = "For precision and durability, here are some excellent cutlery options:"
+    elif any(k in msg for k in ["sofa", "chair", "table", "furniture", "couch"]):
+        text = "Here are some beautiful furniture pieces that will elevate your space:"
+        
+    final_limit = 10 if has_meta_tag else max(len(splits), 10) if is_bundle else 5
+    return {
+        "response": text,
+        "items": format_items(item_ids[:final_limit]),
+        "isBundle": is_bundle
+    }

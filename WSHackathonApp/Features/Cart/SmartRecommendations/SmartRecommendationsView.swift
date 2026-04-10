@@ -96,7 +96,7 @@ private struct RecommendationSectionView: View {
 
 // MARK: - Product Card
 
-private struct RecommendationProductCard: View {
+struct RecommendationProductCard: View {
     let item: RecommendationItem
     var onAdd: (RecommendationItem) -> Void
 
@@ -166,7 +166,7 @@ private struct RecommendationProductCard: View {
 
 // MARK: - Image with shimmer fallback
 
-private struct RecommendationImageView: View {
+struct RecommendationImageView: View {
     let url: URL?
 
     @StateObject private var loader = CustomImageLoader()

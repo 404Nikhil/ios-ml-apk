@@ -60,6 +60,7 @@ struct BundleItem: Identifiable {
 struct BundleOfferView: View {
     let bundle: BundleOffer
     var onAddBundle: ([BundleItem]) -> Void
+    var onRemoveItem: ((String) -> Void)? = nil
     
     @State private var bundleAdded = false
     @State private var customItems: [BundleItem] = []
@@ -139,6 +140,7 @@ struct BundleOfferView: View {
                                     Button(action: {
                                         withAnimation {
                                             customItems.removeAll { $0.id == item.id }
+                                            onRemoveItem?(item.id)
                                         }
                                     }) {
                                         Image(systemName: "minus.circle.fill")

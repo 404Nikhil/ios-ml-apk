@@ -8,12 +8,7 @@
 
 import SwiftUI
 
-// MARK: - Williams-Sonoma Color Palette (local to avoid cross-file private conflicts)
-private extension Color {
-    static let wsIvory = Color(red: 0.976, green: 0.965, blue: 0.945)
-    static let wsGold  = Color(red: 0.745, green: 0.643, blue: 0.459)
-    static let wsDark  = Color(red: 0.133, green: 0.110, blue: 0.090)
-}
+// Removed duplicate color extension since it's now internal to the app module.
 
 struct ProductFilterSheet: View {
     

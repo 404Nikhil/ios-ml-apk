@@ -43,11 +43,13 @@ final class ProductDetailViewModel: ObservableObject {
         cartRepository?.items.first(where: { $0.id == product.id })?.quantity ?? 0
     }
     
-    // MARK: - Bundle Action
     func addBundleToCart(_ items: [BundleItem]) {
+        guard let cartRepo = cartRepository else { return }
         for item in items {
             let product = item.asProductItem()
-            cartRepository?.add(product: product)
+            if !cartRepo.items.contains(where: { $0.id == product.id }) {
+                cartRepo.add(product: product)
+            }
         }
     }
     

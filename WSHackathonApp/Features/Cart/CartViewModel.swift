@@ -64,9 +64,13 @@ final class CartViewModel: ObservableObject {
     }
     
     func addBundleToCart(_ items: [BundleItem]) {
+        guard let cartRepo = repository else { return }
         for item in items {
             let product = item.asProductItem()
-            repository?.add(product: product)
+            // Only add if the cart doesn't ALREADY contain the item
+            if !cartRepo.items.contains(where: { $0.id == product.id }) {
+                cartRepo.add(product: product)
+            }
         }
     }
     

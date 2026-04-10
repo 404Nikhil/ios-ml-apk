@@ -135,7 +135,7 @@ struct BundleOfferView: View {
                             ZStack(alignment: .topTrailing) {
                                 BundleItemThumbnail(item: item)
                                 
-                                if customItems.count > 1 {
+                                if customItems.count > 2 {
                                     Button(action: {
                                         withAnimation {
                                             customItems.removeAll { $0.id == item.id }
@@ -326,7 +326,7 @@ struct CompactBundleOfferView: View {
                                     .frame(width: 60)
                             }
                             
-                            if customItems.count > 1 {
+                            if customItems.count > 2 {
                                 Button(action: {
                                     withAnimation {
                                         customItems.removeAll { $0.id == item.id }

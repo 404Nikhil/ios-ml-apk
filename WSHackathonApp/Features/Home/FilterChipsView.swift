@@ -17,24 +17,28 @@ struct FilterChipsView: View {
         } else {
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 8) {
-                    // Combine selected plus remaining suggested
-                    let active = Array(selectedFilters).sorted(by: { $0.title < $1.title })
-                    let remaining = suggestedFilters.filter { !selectedFilters.contains($0) }
-                    
-                    ForEach(active) { filter in
-                        FilterChip(
-                            filter: filter,
-                            isSelected: true,
-                            onTap: { onDeselect(filter) }
-                        )
-                        .transition(.scale.combined(with: .opacity))
+                    let sortedFilters = suggestedFilters.sorted { (f1, f2) -> Bool in
+                        let s1 = selectedFilters.contains(f1)
+                        let s2 = selectedFilters.contains(f2)
+                        // Selected items go first
+                        if s1 && !s2 { return true }
+                        if !s1 && s2 { return false }
+                        // Then sort alphabetically
+                        return f1.title < f2.title
                     }
                     
-                    ForEach(remaining) { filter in
+                    ForEach(sortedFilters) { filter in
+                        let isSelected = selectedFilters.contains(filter)
                         FilterChip(
                             filter: filter,
-                            isSelected: false,
-                            onTap: { onSelect(filter) }
+                            isSelected: isSelected,
+                            onTap: {
+                                if isSelected {
+                                    onDeselect(filter)
+                                } else {
+                                    onSelect(filter)
+                                }
+                            }
                         )
                         .transition(.scale.combined(with: .opacity))
                     }
@@ -43,7 +47,6 @@ struct FilterChipsView: View {
             }
             .frame(height: 36)
             .animation(.easeInOut(duration: 0.2), value: selectedFilters)
-            .animation(.easeInOut(duration: 0.2), value: suggestedFilters)
         }
     }
 }
@@ -61,14 +64,15 @@ struct FilterChip: View {
                 onTap()
             }
         }) {
-            HStack(spacing: 4) {
+            HStack(spacing: 6) {
+                if isSelected {
+                    Image(systemName: "checkmark")
+                        .font(.system(size: 11, weight: .bold))
+                        .transition(.scale.combined(with: .opacity))
+                }
+                
                 Text(filter.title)
                     .font(.system(size: 13, weight: .medium))
-                
-                if isSelected {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 10, weight: .bold))
-                }
             }
             .foregroundColor(isSelected ? .white : Color(red: 0.133, green: 0.110, blue: 0.090)) // wsDark
             .padding(.horizontal, 14)

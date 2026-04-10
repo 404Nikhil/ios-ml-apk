@@ -405,7 +405,7 @@ struct ProductDetailView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
-                            ForEach(section.items) { recItem in
+                            ForEach(Array(section.items.enumerated()), id: \.offset) { index, recItem in
                                 let productItem = recItem.asProductItem()
                                 RecommendationCardForDetail(
                                     item: recItem,

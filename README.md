@@ -13,7 +13,6 @@ The backend leverages a series of distinct ML models and natural language proces
 **Index:** `faiss.IndexFlatIP` (Facebook AI Similarity Search - Inner Product)
 
 The Chatbot operates using strict deterministic vector mathematics for ultra-fast, local, hallucination-free generation and stateful memory management.
-
 ```mermaid
 graph TD
     A[User Chat Input] --> B{Regex & Stateful Parser}

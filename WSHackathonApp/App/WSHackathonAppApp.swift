@@ -12,6 +12,7 @@ struct WSHackathonAppApp: App {
      @StateObject private var registryRepo = RegistryRepository()
      @StateObject private var cartRepo = CartRepository()
      @StateObject private var tabBarVM = WSTabBarViewModel()
+     @StateObject private var toastManager = ToastManager()
     
     var body: some Scene {
         WindowGroup {
@@ -19,8 +20,10 @@ struct WSHackathonAppApp: App {
                 .environmentObject(registryRepo)
                 .environmentObject(cartRepo)
                 .environmentObject(tabBarVM)
+                .environmentObject(toastManager)
                 .onAppear {
                     tabBarVM.bind(cartRepository: cartRepo)
+                    cartRepo.toastManager = toastManager
                 }
         }
     }

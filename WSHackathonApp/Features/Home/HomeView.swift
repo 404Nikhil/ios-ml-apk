@@ -183,7 +183,7 @@ struct HomeView: View {
                         || (viewModel.selectedCategory?.name == category.name)
                     
                     Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        withAnimation(.easeInOut(duration: 0.2)) {
                             viewModel.selectCategory(category)
                         }
                     }) {
@@ -322,9 +322,11 @@ struct HomeView: View {
                             )
                         }
                         .buttonStyle(.plain)
+                        .transition(.opacity)
                     }
                 }
                 .padding(.horizontal, 16)
+                .id("Grid-\(viewModel.selectedCategory?.name ?? "All")") // Stabilize layout across filters
             }
         }
         .opacity(showContent ? 1 : 0)

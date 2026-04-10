@@ -13,6 +13,8 @@ final class CartRepository: ObservableObject {
     
     @Published private(set) var items: [CartItem] = []
     
+    var toastManager: ToastManager?
+    
     // MARK: - Add Item
     func add(product: ProductItem, quantity: Int = 1) {
         guard let priceValue = product.price else { return }
@@ -29,6 +31,9 @@ final class CartRepository: ObservableObject {
             )
             items.append(newItem)
         }
+        
+        // Trigger Toast
+        toastManager?.show(message: "Added to Cart")
     }
     
     // MARK: - Remove Item

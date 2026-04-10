@@ -30,7 +30,7 @@ class HomeViewModel: ObservableObject {
     static let categories: [ProductCategory] = [
         ProductCategory(name: "All", icon: "square.grid.2x2", keywords: []),
         ProductCategory(name: "Cookware", icon: "frying.pan", keywords: ["pan", "skillet", "pot", "dutch oven", "saucepan", "braiser", "wok", "stockpot", "cookware", "fry"]),
-        ProductCategory(name: "Cutlery", icon: "knife", keywords: ["knife", "knives", "cutlery", "shears", "steel", "block", "blade"]),
+        ProductCategory(name: "Cutlery", icon: "fork.knife", keywords: ["knife", "knives", "cutlery", "shears", "steel", "block", "blade"]),
         ProductCategory(name: "Bakeware", icon: "birthday.cake", keywords: ["bake", "baking", "sheet", "muffin", "cake", "loaf", "pie", "cookie"]),
         ProductCategory(name: "Tabletop", icon: "cup.and.saucer", keywords: ["plate", "bowl", "glass", "mug", "cup", "dinnerware", "flatware", "napkin"]),
         ProductCategory(name: "Food", icon: "leaf", keywords: ["food", "coffee", "tea", "chocolate", "olive", "spice", "sauce", "jam", "honey"]),

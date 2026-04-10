@@ -11,6 +11,7 @@ struct WSTabView: View {
     @EnvironmentObject var viewModel: WSTabBarViewModel
     @EnvironmentObject var cartRepository: CartRepository
     @EnvironmentObject var registryRepository: RegistryRepository
+    @EnvironmentObject var toastManager: ToastManager
     
     init() {
         // Override the default red badge to match the black & white theme
@@ -29,17 +30,30 @@ struct WSTabView: View {
     }
     
     var body: some View {
-        TabView(selection: $viewModel.selectedTab) {
-            ForEach(viewModel.tabs, id: \.rawValue) { tab in
-                view(for: tab)
-                    .tabItem {
-                        Label(tab.title, systemImage: tab.icon)
-                    }
-                    .tag(tab)
-                    .badge(tab == .cart ? (viewModel.cartItemCount > 0 ? viewModel.cartItemCount : 0) : 0)
+        ZStack(alignment: .bottom) {
+            TabView(selection: $viewModel.selectedTab) {
+                ForEach(viewModel.tabs, id: \.rawValue) { tab in
+                    view(for: tab)
+                        .tabItem {
+                            Label(tab.title, systemImage: tab.icon)
+                        }
+                        .tag(tab)
+                        .badge(tab == .cart ? (viewModel.cartItemCount > 0 ? viewModel.cartItemCount : 0) : 0)
+                }
+            }
+            .tint(.black)
+            
+            // Global Toast Overlay
+            if toastManager.isShowing {
+                ToastView(message: toastManager.message)
+                    .padding(.bottom, 70) // Above Tab Bar
+                    .transition(.asymmetric(
+                        insertion: .move(edge: .bottom).combined(with: .opacity),
+                        removal: .opacity.combined(with: .scale(scale: 0.9))
+                    ))
+                    .zIndex(100)
             }
         }
-        .tint(.black)
     }
     
     @ViewBuilder

@@ -19,7 +19,7 @@ extension ProductItem: Transferable {
     }
 }
 
-struct ProductItem: Identifiable, Codable, Sendable {
+struct ProductItem: Identifiable, Codable, Sendable, Equatable {
     let id: String
     let title: String
     let price: Double?

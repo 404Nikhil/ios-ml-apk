@@ -123,12 +123,15 @@ struct CartView: View {
                                     CartItemRow(
                                         item: cartItem,
                                         onAdd: { viewModel.add(cartItem) },
-                                        onRemove: { viewModel.removeItem(cartItem) }
+                                        onRemove: { viewModel.removeItem(cartItem) },
+                                        onDelete: {
+                                            withAnimation { viewModel.deleteItem(cartItem) }
+                                        }
                                     )
                                     // NATIVE SWIPE TO DELETE
                                     .swipeActions(edge: .trailing, allowsFullSwipe: true) {
                                         Button(role: .destructive) {
-                                            withAnimation { viewModel.removeItem(cartItem) }
+                                            withAnimation { viewModel.deleteItem(cartItem) }
                                         } label: {
                                             Label("Remove", systemImage: "trash")
                                         }

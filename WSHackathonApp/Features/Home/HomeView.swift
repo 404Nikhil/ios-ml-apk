@@ -179,8 +179,16 @@ struct HomeView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 10) {
                 ForEach(HomeViewModel.categories) { category in
-                    let isSelected = (viewModel.selectedCategory == nil && category.keywords.isEmpty)
-                        || (viewModel.selectedCategory?.name == category.name)
+                    let isSelected: Bool = {
+                        if !viewModel.debouncedSearchText.isEmpty {
+                            // While searching, 'All' is the only active selection (keywords are empty)
+                            return category.keywords.isEmpty
+                        } else {
+                            // Standard category selection logic
+                            return (viewModel.selectedCategory == nil && category.keywords.isEmpty)
+                                || (viewModel.selectedCategory?.name == category.name)
+                        }
+                    }()
                     
                     Button(action: {
                         withAnimation(.easeInOut(duration: 0.2)) {
@@ -330,6 +338,7 @@ struct HomeView: View {
             }
         }
         .opacity(showContent ? 1 : 0)
+        .animation(.easeInOut(duration: 0.3), value: viewModel.filteredProducts)
         .animation(.easeOut(duration: 0.5).delay(0.4), value: showContent)
     }
     

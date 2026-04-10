@@ -17,6 +17,7 @@ struct ProductCategory: Identifiable, Hashable {
 
 class HomeViewModel: ObservableObject {
     @Published var searchText: String = ""
+    @Published var debouncedSearchText: String = ""
     @Published var products: [ProductItem] = []
     @Published var isLoading: Bool = false
     @Published var errorMessage: String?
@@ -25,6 +26,15 @@ class HomeViewModel: ObservableObject {
     private var hasLoaded = false
     private var cartRepository: CartRepository?
     private var registryRepository: RegistryRepository?
+    private var cancellables = Set<AnyCancellable>()
+    
+    init() {
+        $searchText
+            .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
+            .removeDuplicates()
+            .assign(to: \.debouncedSearchText, on: self)
+            .store(in: &cancellables)
+    }
 
     // MARK: - Category Data
     static let categories: [ProductCategory] = [
@@ -80,19 +90,18 @@ class HomeViewModel: ObservableObject {
     // MARK: - Filtering
 
     var filteredProducts: [ProductItem] {
-        var result = products
+        // If there is search text, we search across ALL products, ignoring the category filter
+        if !debouncedSearchText.isEmpty {
+            return products.filter { $0.title.localizedCaseInsensitiveContains(debouncedSearchText) }
+        }
         
-        // Category filter
+        // If no search text, we apply the category filter normally
+        var result = products
         if let cat = selectedCategory, !cat.keywords.isEmpty {
             result = result.filter { product in
                 let title = product.title.lowercased()
                 return cat.keywords.contains(where: { title.contains($0) })
             }
-        }
-        
-        // Search filter
-        if !searchText.isEmpty {
-            result = result.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
         }
         
         return result

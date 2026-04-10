@@ -46,6 +46,10 @@ final class CartRepository: ObservableObject {
         }
     }
     
+    func deleteEntirely(productId: String) {
+        items.removeAll(where: { $0.id == productId })
+    }
+    
     // MARK: - Total Price
     var totalPrice: Double {
         items.reduce(0) { $0 + ($1.price * Double($1.quantity)) }

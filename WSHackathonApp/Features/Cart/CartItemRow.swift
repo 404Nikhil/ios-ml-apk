@@ -12,6 +12,7 @@ struct CartItemRow: View {
     let item: CartItem
     let onAdd: () -> Void
     let onRemove: () -> Void
+    let onDelete: () -> Void
     
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -25,10 +26,25 @@ struct CartItemRow: View {
             // MARK: - Info
             VStack(alignment: .leading, spacing: 6) {
                 
-                Text(item.title)
-                    .font(.subheadline)
-                    .fontWeight(.semibold)
-                    .lineLimit(2)
+                HStack(alignment: .top) {
+                    Text(item.title)
+                        .font(.subheadline)
+                        .fontWeight(.semibold)
+                        .lineLimit(2)
+                    
+                    Spacer()
+                    
+                    // MARK: - One-Click Delete
+                    Button(action: onDelete) {
+                        Image(systemName: "trash")
+                            .font(.system(size: 14))
+                            .foregroundColor(.red.opacity(0.8))
+                            .padding(8)
+                            .background(Color.red.opacity(0.05))
+                            .clipShape(Circle())
+                    }
+                    .buttonStyle(.plain)
+                }
                 
                 Text("$\(item.price, specifier: "%.2f")")
                     .font(.subheadline)
@@ -55,16 +71,17 @@ struct CartItemRow: View {
                 .foregroundColor(.black)
             }
             
-            Spacer()
-            
             // MARK: - Total Price per item
-            Text("$\(item.price * Double(item.quantity), specifier: "%.2f")")
-                .font(.subheadline)
-                .fontWeight(.semibold)
+            VStack(alignment: .trailing) {
+                Spacer()
+                Text("$\(item.price * Double(item.quantity), specifier: "%.2f")")
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+            }
         }
         .padding()
         .background(Color.white)
         .cornerRadius(12)
-        .shadow(color: Color(.systemGray4), radius: 2, x: 0, y: 1)
+        .shadow(color: Color(.systemGray4).opacity(0.3), radius: 2, x: 0, y: 1)
     }
 }

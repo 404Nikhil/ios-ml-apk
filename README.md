@@ -135,7 +135,6 @@ The frontend is a fully native SwiftUI application adhering strictly to MVVM pat
 cd intcart_backend
 pip install -r requirements.txt
 python3 -m uvicorn app:app --reload
-
 # 2. Launch iOS Frontend
 open WSHackathonApp.xcodeproj
 # Press Cmd+R via Xcode 16 to build to an iOS device

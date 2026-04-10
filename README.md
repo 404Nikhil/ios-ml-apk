@@ -9,7 +9,6 @@ This is the Smart eCommerce frontend for the AITHON 2026 hackathon. It features 
 - **Modern UI/UX**: Premium design with high-fidelity components, skeletons, and spring animations.
 
 ## 🚀 Getting Started
-
 ### Prerequisites
 - **macOS** with **Xcode 16.0+**
 - **Git**

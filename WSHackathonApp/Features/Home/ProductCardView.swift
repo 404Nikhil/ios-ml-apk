@@ -11,11 +11,11 @@ import SwiftUI
 struct ProductCardView: View {
     let product: ProductItem
     let quantity: Int
-    let registryQuantity: Int
+    var registryQuantity: Int = 0
     let onAdd: () -> Void
     let onRemove: () -> Void
-    let onAddToRegistry: () -> Void
-    let onRemoveFromRegistry: () -> Void
+    var onAddToRegistry: () -> Void = {}
+    var onRemoveFromRegistry: () -> Void = {}
     
     @State private var isPressed = false
     
@@ -131,50 +131,6 @@ struct ProductCardView: View {
                     .padding(.horizontal, 4)
                 }
                 
-                // MARK: - Add To Registry Button
-                if registryQuantity == 0 {
-                    Button(action: onAddToRegistry) {
-                        HStack(spacing: 5) {
-                            Image(systemName: "list.bullet.rectangle")
-                                .font(.system(size: 10))
-                            Text(AppStrings.Home.addToRegistry)
-                                .font(.system(size: 11, weight: .semibold))
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(.vertical, 8)
-                        .background(Color.clear)
-                        .foregroundColor(.black)
-                        .overlay(
-                            Capsule()
-                                .stroke(Color.black.opacity(0.5), lineWidth: 1)
-                        )
-                        .clipShape(Capsule())
-                    }
-                } else {
-                    HStack {
-                        Button(action: onRemoveFromRegistry) {
-                            Image(systemName: "minus.circle.fill")
-                                .font(.system(size: 20))
-                        }
-                        
-                        Text(AppStrings.Registry.title)
-                            .font(.system(size: 11, weight: .semibold))
-                        
-                        Spacer()
-                        
-                        Text("\(registryQuantity)")
-                            .font(.system(size: 14, weight: .bold))
-                        
-                        Spacer()
-                        
-                        Button(action: onAddToRegistry) {
-                            Image(systemName: "plus.circle.fill")
-                                .font(.system(size: 20))
-                        }
-                    }
-                    .foregroundColor(.black)
-                    .padding(.vertical, 4)
-                }
             }
             .padding(.horizontal, 12)
             .padding(.bottom, 12)

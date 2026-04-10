@@ -12,17 +12,42 @@ struct CartView: View {
     @EnvironmentObject var cartRepository: CartRepository
     @EnvironmentObject var tabBarVM: WSTabBarViewModel
     
-    @State private var showClearConfirmation = false
-    
     var body: some View {
         NavigationStack {
             ZStack {
                 Color(.systemGray6)
                     .ignoresSafeArea()
                 
-                if viewModel.isEmptyCart {
-                    // --- PREMIUM EMPTY STATE ---
-                    ScrollView(showsIndicators: false) {
+                VStack(spacing: 0) {
+                    // MARK: - Custom Header
+                    HStack {
+                        Text(AppStrings.Cart.title)
+                            .font(.largeTitle)
+                            .fontWeight(.bold)
+                            .foregroundColor(.black)
+                        
+                        Spacer()
+                        
+                        if !viewModel.isEmptyCart {
+                            Button(action: {
+                                withAnimation { viewModel.clearCart() }
+                            }) {
+                                Image(systemName: "trash")
+                                    .font(.system(size: 16))
+                                    .foregroundColor(.black)
+                                    .padding(10)
+                                    .background(Color.black.opacity(0.05))
+                                    .clipShape(Circle())
+                            }
+                        }
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 16)
+                    .padding(.bottom, 8)
+                
+                    if viewModel.isEmptyCart {
+                        // --- PREMIUM EMPTY STATE ---
+                        ScrollView(showsIndicators: false) {
                         VStack(spacing: 24) {
                             
                             // 1. Stylized Empty State Illustration
@@ -94,15 +119,12 @@ struct CartView: View {
                                             ProductCardView(
                                                 product: item,
                                                 quantity: viewModel.quantity(for: item),
-                                                registryQuantity: 0,
                                                 onAdd: { 
                                                     withAnimation(.spring()) {
                                                         viewModel.addToCart(item) 
                                                     }
                                                 },
-                                                onRemove: { viewModel.removeFromCart(item) },
-                                                onAddToRegistry: { },
-                                                onRemoveFromRegistry: { }
+                                                onRemove: { viewModel.removeFromCart(item) }
                                             )
                                             .transition(.scale.combined(with: .opacity))
                                         }
@@ -122,27 +144,24 @@ struct CartView: View {
                             // 1. The Main Cart Items
                             Section {
                                 ForEach(viewModel.items) { cartItem in
-                                    NavigationLink(destination: ProductDetailView(
-                                        product: ProductItem(id: cartItem.id, title: cartItem.title, price: cartItem.price, path: cartItem.imageURL?.absoluteString, brand: nil, productType: nil),
-                                        allProducts: viewModel.trendingItems
-                                    )) {
-                                        CartItemRow(
-                                            item: cartItem,
-                                            onAdd: { viewModel.add(cartItem) },
-                                            onRemove: { viewModel.removeItem(cartItem) },
-                                            onDelete: {
-                                                withAnimation { viewModel.deleteItem(cartItem) }
-                                            }
-                                        )
-                                    }
-                                    .buttonStyle(.plain)
-                                    .swipeActions(edge: .trailing, allowsFullSwipe: true) {
-                                        Button(role: .destructive) {
+                                    CartItemRow(
+                                        item: cartItem,
+                                        onAdd: { viewModel.add(cartItem) },
+                                        onRemove: { viewModel.removeItem(cartItem) },
+                                        onDelete: {
                                             withAnimation { viewModel.deleteItem(cartItem) }
-                                        } label: {
-                                            Label("Remove", systemImage: "trash")
                                         }
-                                    }
+                                    )
+                                    .overlay(
+                                        NavigationLink(destination: ProductDetailView(
+                                            product: ProductItem(id: cartItem.id, title: cartItem.title, price: cartItem.price, path: cartItem.imageURL?.absoluteString, brand: nil, productType: nil),
+                                            allProducts: viewModel.trendingItems
+                                        )) {
+                                            EmptyView()
+                                        }
+                                        .opacity(0)
+                                    )
+                                    .listRowSeparator(.hidden)
                                 }
                             }
                             .listRowBackground(Color.clear)
@@ -233,33 +252,9 @@ struct CartView: View {
                         .shadow(color: Color(.black).opacity(0.1), radius: 10, x: 0, y: -5)
                     }
                 }
+                } // End VStack
             }
-            .navigationTitle(AppStrings.Cart.title)
-            .toolbar {
-                if !viewModel.isEmptyCart {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button(role: .destructive) {
-                            showClearConfirmation = true
-                        } label: {
-                            Label("Empty Cart", systemImage: "trash")
-                                .labelStyle(.iconOnly)
-                                .foregroundColor(.red)
-                        }
-                    }
-                }
-            }
-            .confirmationDialog(
-                "Empty your cart?",
-                isPresented: $showClearConfirmation,
-                titleVisibility: .visible
-            ) {
-                Button("Remove All Items", role: .destructive) {
-                    viewModel.clearCart()
-                }
-                Button("Cancel", role: .cancel) { }
-            } message: {
-                Text("This will remove all \(viewModel.items.count) item\(viewModel.items.count == 1 ? "" : "s") from your cart.")
-            }
+            .navigationBarHidden(true)
         }
         .onAppear {
             Task {

@@ -9,7 +9,6 @@ import Foundation
 
 enum TabItem: Int, CaseIterable, Identifiable {
     case home = 0
-    case registry
     case assistant
     case cart
     
@@ -18,7 +17,6 @@ enum TabItem: Int, CaseIterable, Identifiable {
     var title: String {
         switch self {
         case .home: return "Home"
-        case .registry: return "Registry"
         case .assistant: return "Milo"
         case .cart: return "Cart"
         }
@@ -27,7 +25,6 @@ enum TabItem: Int, CaseIterable, Identifiable {
     var icon: String {
         switch self {
         case .home: return "house"
-        case .registry: return "list.bullet"
         case .assistant: return "sparkles.rectangle.stack"
         case .cart: return "cart"
         }

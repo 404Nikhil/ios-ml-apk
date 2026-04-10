@@ -97,17 +97,8 @@ struct SearchResultsContentView: View {
                                 ProductCardView(
                                     product: product,
                                     quantity: cartRepository.items.first(where: { $0.id == product.id })?.quantity ?? 0,
-                                    registryQuantity: registryRepository.currentRegistry?.items.first(where: { $0.id == product.id })?.quantity ?? 0,
                                     onAdd: { cartRepository.add(product: product) },
-                                    onRemove: { cartRepository.remove(productId: product.id) },
-                                    onAddToRegistry: {
-                                        if registryRepository.isActiveRegistry {
-                                            registryRepository.addProduct(product)
-                                        } else {
-                                            tabBarVM.selectTab(.registry)
-                                        }
-                                    },
-                                    onRemoveFromRegistry: { registryRepository.removeItem(product.id) }
+                                    onRemove: { cartRepository.remove(productId: product.id) }
                                 )
                             }
                             .buttonStyle(.plain)

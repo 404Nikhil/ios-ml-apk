@@ -227,66 +227,6 @@ struct ProductDetailView: View {
                 .background(Color(.systemGray5))
                 .cornerRadius(12)
             }
-            
-            // Add to Registry
-            let regQty = viewModel.registryQuantity(for: product)
-            
-            if regQty == 0 {
-                Button(action: {
-                    if viewModel.canAddToRegistry(product) {
-                        viewModel.addToRegistry(product)
-                    } else {
-                        tabBarVM.selectTab(.registry)
-                        dismiss()
-                    }
-                }) {
-                    HStack(spacing: 8) {
-                        Image(systemName: "list.bullet.rectangle")
-                            .font(.system(size: 14, weight: .semibold))
-                        Text(AppStrings.Home.addToRegistry)
-                            .font(.system(size: 15, weight: .semibold))
-                    }
-                    .frame(maxWidth: .infinity)
-                    .padding(.vertical, 12)
-                    .background(Color.white)
-                    .foregroundColor(.black)
-                    .cornerRadius(12)
-                    .overlay(
-                        RoundedRectangle(cornerRadius: 12)
-                            .stroke(Color.black, lineWidth: 1.5)
-                    )
-                }
-                .opacity(showContent ? 1 : 0)
-                .offset(y: showContent ? 0 : 20)
-                .animation(.easeOut(duration: 0.4).delay(0.35), value: showContent)
-            } else {
-                HStack {
-                    Text(AppStrings.Registry.title)
-                        .font(.system(size: 15, weight: .semibold))
-                        .frame(width: 70, alignment: .leading)
-                    
-                    Spacer()
-                    
-                    Button(action: { viewModel.removeFromRegistry(product) }) {
-                        Image(systemName: "minus.circle.fill")
-                            .font(.title2)
-                    }
-                    
-                    Text("\(regQty)")
-                        .font(.system(size: 18, weight: .bold))
-                        .frame(width: 40)
-                    
-                    Button(action: { viewModel.addToRegistry(product) }) {
-                        Image(systemName: "plus.circle.fill")
-                            .font(.title2)
-                    }
-                }
-                .foregroundColor(.black)
-                .padding(.vertical, 10)
-                .padding(.horizontal, 16)
-                .background(Color(.systemGray5))
-                .cornerRadius(12)
-            }
         }
     }
     

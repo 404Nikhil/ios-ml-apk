@@ -61,8 +61,6 @@ struct WSTabView: View {
         switch tab {
         case .home:
             HomeView()
-        case .registry:
-            RegistryView()
         case .assistant:
             ChatAssistantView()
         case .cart:

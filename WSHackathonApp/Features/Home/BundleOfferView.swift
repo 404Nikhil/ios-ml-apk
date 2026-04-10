@@ -62,6 +62,7 @@ struct BundleOfferView: View {
     var onAddBundle: ([BundleItem]) -> Void
     var onRemoveItem: ((String) -> Void)? = nil
     
+    @EnvironmentObject var toastManager: ToastManager
     @State private var bundleAdded = false
     @State private var customItems: [BundleItem] = []
     
@@ -136,20 +137,22 @@ struct BundleOfferView: View {
                             ZStack(alignment: .topTrailing) {
                                 BundleItemThumbnail(item: item)
                                 
-                                if customItems.count > 2 {
-                                    Button(action: {
-                                        withAnimation {
+                                Button(action: {
+                                    withAnimation {
+                                        if customItems.count <= 2 {
+                                            toastManager.show(message: "Cannot reduce bundle to size 1")
+                                        } else {
                                             customItems.removeAll { $0.id == item.id }
                                             onRemoveItem?(item.id)
                                         }
-                                    }) {
-                                        Image(systemName: "minus.circle.fill")
-                                            .font(.system(size: 16))
-                                            .foregroundColor(.black)
-                                            .background(Circle().fill(Color.white).padding(2))
                                     }
-                                    .offset(x: 5, y: -5)
+                                }) {
+                                    Image(systemName: "minus.circle.fill")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.black)
+                                        .background(Circle().fill(Color.white).padding(2))
                                 }
+                                .offset(x: 5, y: -5)
                             }
                             
                             if index < customItems.count - 1 {
@@ -402,13 +405,9 @@ struct CompactBundleOfferView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
         }
-        .background(Color(.systemBackground))
-        .clipShape(RoundedRectangle(cornerRadius: 14))
-        .overlay(
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(Color(.systemGray4), lineWidth: 1)
-        )
-        .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 2)
+        .background(Color.white)
+        .cornerRadius(12)
+        .shadow(color: Color(.systemGray4).opacity(0.3), radius: 2, x: 0, y: 1)
         .onAppear { customItems = bundle.items }
         .onChange(of: bundle.id) { _, _ in customItems = bundle.items }
     }

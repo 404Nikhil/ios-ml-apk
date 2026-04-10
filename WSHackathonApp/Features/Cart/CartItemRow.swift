@@ -25,26 +25,10 @@ struct CartItemRow: View {
             
             // MARK: - Info
             VStack(alignment: .leading, spacing: 6) {
-                
-                HStack(alignment: .top) {
-                    Text(item.title)
-                        .font(.subheadline)
-                        .fontWeight(.semibold)
-                        .lineLimit(2)
-                    
-                    Spacer()
-                    
-                    // MARK: - One-Click Delete
-                    Button(action: onDelete) {
-                        Image(systemName: "trash")
-                            .font(.system(size: 14))
-                            .foregroundColor(.red.opacity(0.8))
-                            .padding(8)
-                            .background(Color.red.opacity(0.05))
-                            .clipShape(Circle())
-                    }
-                    .buttonStyle(.plain)
-                }
+                Text(item.title)
+                    .font(.subheadline)
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
                 
                 Text("$\(item.price, specifier: "%.2f")")
                     .font(.subheadline)
@@ -73,6 +57,17 @@ struct CartItemRow: View {
             
             // MARK: - Total Price per item
             VStack(alignment: .trailing) {
+                // MARK: - One-Click Delete
+                Button(action: onDelete) {
+                    Image(systemName: "trash")
+                        .font(.system(size: 14))
+                        .foregroundColor(.black)
+                        .padding(8)
+                        .background(Color.black.opacity(0.05))
+                        .clipShape(Circle())
+                }
+                .buttonStyle(.plain)
+                
                 Spacer()
                 Text("$\(item.price * Double(item.quantity), specifier: "%.2f")")
                     .font(.subheadline)

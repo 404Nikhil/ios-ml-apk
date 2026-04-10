@@ -270,17 +270,8 @@ struct HomeView: View {
                             ProductCardView(
                                 product: product,
                                 quantity: viewModel.quantity(for: product),
-                                registryQuantity: viewModel.registryQuantity(for: product),
                                 onAdd: { viewModel.addToCart(product) },
-                                onRemove: { viewModel.removeFromCart(product) },
-                                onAddToRegistry: {
-                                    if viewModel.canAddToRegistry(product) {
-                                        viewModel.addToRegistry(product)
-                                    } else {
-                                        tabBarVM.selectTab(.registry)
-                                    }
-                                },
-                                onRemoveFromRegistry: { viewModel.removeFromRegistry(product) }
+                                onRemove: { viewModel.removeFromCart(product) }
                             )
                         }
                         .buttonStyle(.plain)

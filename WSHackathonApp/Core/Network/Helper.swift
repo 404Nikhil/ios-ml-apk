@@ -14,4 +14,12 @@ extension Endpoint {
             method: .get
         )
     }
+    
+    static func smartFilters(query: String) -> Endpoint {
+        Endpoint(
+            path: "/smart_filters",
+            method: .get,
+            queryParameters: ["query": query]
+        )
+    }
 }

@@ -24,6 +24,10 @@ class HomeViewModel: ObservableObject {
     @Published var selectedCategory: ProductCategory? = nil
     @Published var filterState = ProductFilterState()
     
+    // Smart Filters
+    @Published var suggestedFilters: [FilterOption] = []
+    @Published var selectedFilters: Set<FilterOption> = []
+    
     private var hasLoaded = false
     private var cartRepository: CartRepository?
     private var registryRepository: RegistryRepository?
@@ -34,6 +38,14 @@ class HomeViewModel: ObservableObject {
             .debounce(for: .milliseconds(300), scheduler: RunLoop.main)
             .removeDuplicates()
             .assign(to: \.debouncedSearchText, on: self)
+            .store(in: &cancellables)
+            
+        $debouncedSearchText
+            .sink { [weak self] query in
+                Task {
+                    await self?.fetchSmartFilters(query: query)
+                }
+            }
             .store(in: &cancellables)
     }
 
@@ -143,6 +155,26 @@ class HomeViewModel: ObservableObject {
         // Step 3: Apply filter engine (price, type, sort)
         result = ProductFilterEngine.apply(filterState, to: result)
         
+        // Step 4: Apply Smart Filters selection
+        for filter in selectedFilters {
+            switch filter.type {
+            case .category:
+                result = result.filter { 
+                    $0.productType?.localizedCaseInsensitiveContains(filter.title) == true || 
+                    $0.title.localizedCaseInsensitiveContains(filter.title)
+                }
+            case .attribute:
+                result = result.filter { $0.title.localizedCaseInsensitiveContains(filter.title) }
+            case .price:
+                // Parse "Under $120"
+                if let maxPriceStr = filter.title.components(separatedBy: "$").last, let max = Double(maxPriceStr) {
+                    result = result.filter { ($0.price ?? 0) <= max }
+                } else if filter.title == "Premium" {
+                     result = result.filter { ($0.price ?? 0) > 200 } // example premium threshold
+                }
+            }
+        }
+        
         return result
     }
     
@@ -162,6 +194,37 @@ class HomeViewModel: ObservableObject {
         } else {
             selectedCategory = category
         }
+    }
+    
+    // MARK: - Smart Filters Logic
+    
+    @MainActor
+    func fetchSmartFilters(query: String) async {
+        guard !query.isEmpty else {
+            self.suggestedFilters = []
+            self.selectedFilters.removeAll()
+            return
+        }
+        
+        do {
+            let response: SmartFilterResponse = try await APIClient.shared.request(Endpoint.smartFilters(query: query))
+            self.suggestedFilters = response.suggestedFilters
+            
+            // Clean up selectedFilters that are no longer in suggestedFilters
+            let newSuggestedSet = Set(response.suggestedFilters)
+            self.selectedFilters.formIntersection(newSuggestedSet)
+            
+        } catch {
+            print("⚠️ Smart Filters Error: \(error)")
+        }
+    }
+    
+    func applyFilter(_ filter: FilterOption) {
+        selectedFilters.insert(filter)
+    }
+    
+    func removeFilter(_ filter: FilterOption) {
+        selectedFilters.remove(filter)
     }
     
     func fetchProducts() async {

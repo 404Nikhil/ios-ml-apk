@@ -41,6 +41,17 @@ struct HomeView: View {
                             searchBarSection
                                 .padding(.top, 4)
                             
+                            // MARK: - Smart Filters
+                            if !viewModel.suggestedFilters.isEmpty || !viewModel.selectedFilters.isEmpty {
+                                FilterChipsView(
+                                    suggestedFilters: viewModel.suggestedFilters,
+                                    selectedFilters: $viewModel.selectedFilters,
+                                    onSelect: { viewModel.applyFilter($0) },
+                                    onDeselect: { viewModel.removeFilter($0) }
+                                )
+                                .padding(.top, 16)
+                            }
+                            
                             // MARK: - Hero Banner
                             heroBannerSection
                                 .padding(.top, 16)

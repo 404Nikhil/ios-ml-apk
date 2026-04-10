@@ -7,6 +7,9 @@ import json
 import faiss
 import os
 import random
+import re
+import math
+from collections import Counter
 from gensim.models import Word2Vec
 
 app = FastAPI()
@@ -253,3 +256,122 @@ def get_skus():
     skus_path = os.path.join(BASE_DIR, "mock-api", "responses", "skus.json")
     with open(skus_path, "r", encoding="utf-8") as f:
         return json.load(f)
+
+
+# -------------------------------
+# AI SMART FILTERS
+# -------------------------------
+@app.get("/smart_filters")
+def smart_filters(query: str):
+    q_lower = query.lower().strip()
+    
+    # 1. Match products
+    matched_pids = []
+    for pid, p in products.items():
+        name = p.get("name", "").lower()
+        typ = p.get("type", "").lower()
+        cat = p.get("category", "").lower()
+        if q_lower in name or q_lower in typ or q_lower in cat:
+            matched_pids.append(pid)
+            
+    if not matched_pids:
+        return {"suggestedFilters": []}
+        
+    # 2. Extract Terms (Types, Prices, Attributes)
+    prices = []
+    types_map = {}
+    words_map = {}
+    
+    STOPWORDS = {"and", "or", "the", "with", "set", "of", "for", "in", "a", "an", "to", "inch"}
+    
+    for pid in matched_pids:
+        p = products[pid]
+        
+        t = p.get("type", "")
+        if t:
+            types_map.setdefault(t, []).append(pid)
+            
+        if p.get("price") is not None:
+             prices.append(p["price"])
+             
+        name = p.get("name", "").lower()
+        name = re.sub(r'[^\w\s-]', '', name)
+        for tok in name.split():
+            tok = tok.strip()
+            if tok not in STOPWORDS and len(tok) > 2 and tok != q_lower:
+                words_map.setdefault(tok, []).append(pid)
+
+    # 3. Embedding-Based Scoring
+    query_vecs = [model.wv[pid] for pid in matched_pids if pid in model.wv]
+    query_centroid = np.mean(query_vecs, axis=0) if query_vecs else None
+        
+    scored_filters = []
+    
+    valid_words = [(w, pids) for w, pids in words_map.items() if len(pids) > 1]
+    if not valid_words:
+        valid_words = [(w, pids) for w, pids in words_map.items() if len(pids) > 0]
+        
+    for w, pids in valid_words:
+        if query_centroid is not None:
+            w_vecs = [model.wv[pid] for pid in pids if pid in model.wv]
+            if w_vecs:
+                w_centroid = np.mean(w_vecs, axis=0)
+                score = cosine(query_centroid, w_centroid)
+            else:
+                score = 0.0
+        else:
+            score = len(pids) / len(matched_pids)
+            
+        scored_filters.append({
+            "id": f"attr_{w}",
+            "title": w.title().replace("-", " "),
+            "type": "attribute",
+            "score": float(score)
+        })
+        
+    for t, pids in types_map.items():
+        if t.lower() == q_lower: 
+            continue
+        if query_centroid is not None:
+            t_vecs = [model.wv[pid] for pid in pids if pid in model.wv]
+            if t_vecs:
+                t_centroid = np.mean(t_vecs, axis=0)
+                score = cosine(query_centroid, t_centroid) + 0.1 # slight boost
+            else:
+                score = 0.0
+        else:
+            score = len(pids) / len(matched_pids) + 0.1
+            
+        scored_filters.append({
+            "id": f"type_{t}",
+            "title": t.replace("_", " ").title(),
+            "type": "category",
+            "score": float(score)
+        })
+        
+    scored_filters.sort(key=lambda x: x["score"], reverse=True)
+    
+    # 4. Extract Top ML-Ranked
+    final_filters = []
+    seen_titles = set()
+    for f in scored_filters:
+        if f["title"].lower() not in seen_titles:
+            f.pop("score")
+            final_filters.append(f)
+            seen_titles.add(f["title"].lower())
+        if len(final_filters) >= 5:
+            break
+            
+    # 5. Price Bucketing
+    if prices:
+        prices.sort()
+        median_price = prices[len(prices)//2]
+        if median_price > 50:
+            price_cap = int(math.ceil(median_price/10)*10)
+            final_filters.append({
+                "id": f"price_under_{price_cap}",
+                "title": f"Under ${price_cap}",
+                "type": "price"
+            })
+            
+    return {"suggestedFilters": final_filters[:8]}

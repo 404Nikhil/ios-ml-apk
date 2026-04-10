@@ -22,7 +22,7 @@ struct ProductDetailView: View {
     @Namespace private var heroAnimation
     @State private var imageScale: CGFloat = 1.0
     @State private var showContent = false
-    @State private var addedToCartFeedback = false
+
     
     var body: some View {
         ScrollView(showsIndicators: false) {
@@ -168,32 +168,25 @@ struct ProductDetailView: View {
             // Add to Cart
             if qty == 0 {
                 Button(action: {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                        viewModel.addToCart(product)
-                        addedToCartFeedback = true
-                    }
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                        withAnimation { addedToCartFeedback = false }
-                    }
+                    viewModel.addToCart(product)
                 }) {
                     HStack(spacing: 8) {
-                        Image(systemName: addedToCartFeedback ? "checkmark" : "cart.badge.plus")
+                        Image(systemName: "cart.badge.plus")
                             .font(.system(size: 16, weight: .semibold))
-                        Text(addedToCartFeedback ? "Added!" : AppStrings.Home.addToCartButton)
+                        Text(AppStrings.Home.addToCartButton)
                             .font(.system(size: 16, weight: .bold))
                     }
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 14)
-                    .background(addedToCartFeedback ? Color.green : Color.black)
+                    .background(Color.black)
                     .foregroundColor(.white)
                     .cornerRadius(12)
                 }
-                .scaleEffect(addedToCartFeedback ? 1.03 : 1.0)
                 .opacity(showContent ? 1 : 0)
                 .offset(y: showContent ? 0 : 20)
                 .animation(.easeOut(duration: 0.4).delay(0.3), value: showContent)
             } else {
-                // Stepper
+                // Stepper — same pattern as home ProductCardView
                 HStack {
                     Text(AppStrings.Cart.title)
                         .font(.system(size: 15, weight: .semibold))
@@ -364,7 +357,9 @@ struct ProductDetailView: View {
                         NavigationLink(destination: ProductDetailView(product: item, allProducts: allProducts)) {
                             SimilarItemCard(
                                 item: item,
-                                onAdd: { viewModel.addToCart(item) }
+                                quantity: viewModel.quantity(for: item),
+                                onAdd: { viewModel.addToCart(item) },
+                                onRemove: { viewModel.removeFromCart(item) }
                             )
                         }
                         .buttonStyle(.plain)
@@ -399,13 +394,12 @@ struct ProductDetailView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 12) {
                             ForEach(section.items) { recItem in
+                                let productItem = recItem.asProductItem()
                                 RecommendationCardForDetail(
                                     item: recItem,
-                                    onAdd: {
-                                        withAnimation(.spring()) {
-                                            viewModel.addToCart(recItem.asProductItem())
-                                        }
-                                    }
+                                    quantity: viewModel.quantity(for: productItem),
+                                    onAdd: { viewModel.addToCart(productItem) },
+                                    onRemove: { viewModel.removeFromCart(productItem) }
                                 )
                             }
                         }
@@ -494,9 +488,9 @@ struct ProductDetailView: View {
 
 struct SimilarItemCard: View {
     let item: ProductItem
+    let quantity: Int
     var onAdd: () -> Void
-    
-    @State private var addedToCart = false
+    var onRemove: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -512,34 +506,45 @@ struct SimilarItemCard: View {
                     .lineLimit(2)
                     .frame(height: 32, alignment: .topLeading)
                 
-                HStack(alignment: .center) {
-                    Text(item.price?.formatted(.currency(code: "USD")) ?? "")
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                    
-                    Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                            addedToCart = true
-                            onAdd()
+                if quantity == 0 {
+                    HStack(alignment: .center) {
+                        Text(item.price?.formatted(.currency(code: "USD")) ?? "")
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundColor(.secondary)
+                        
+                        Spacer()
+                        
+                        Button(action: onAdd) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.black)
+                                    .frame(width: 26, height: 26)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            withAnimation { addedToCart = false }
-                        }
-                    }) {
-                        ZStack {
-                            Circle()
-                                .fill(addedToCart ? Color.green : Color.black)
-                                .frame(width: 26, height: 26)
-                            
-                            Image(systemName: addedToCart ? "checkmark" : "plus")
-                                .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.white)
-                        }
+                        .buttonStyle(.borderless)
                     }
-                    .buttonStyle(.borderless)
-                    .scaleEffect(addedToCart ? 1.15 : 1.0)
+                } else {
+                    HStack(spacing: 6) {
+                        Button(action: onRemove) {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.system(size: 20))
+                        }
+                        
+                        Text("\(quantity)")
+                            .font(.system(size: 14, weight: .bold))
+                            .frame(minWidth: 20)
+                        
+                        Button(action: onAdd) {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 20))
+                        }
+                        
+                        Spacer()
+                    }
+                    .foregroundColor(.black)
                 }
             }
             .padding(.horizontal, 8)
@@ -556,9 +561,9 @@ struct SimilarItemCard: View {
 
 struct RecommendationCardForDetail: View {
     let item: RecommendationItem
+    let quantity: Int
     var onAdd: () -> Void
-    
-    @State private var addedToCart = false
+    var onRemove: () -> Void
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
@@ -574,34 +579,45 @@ struct RecommendationCardForDetail: View {
                     .foregroundColor(.primary)
                     .lineLimit(1)
                 
-                HStack(alignment: .center) {
-                    Text(item.priceText)
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundColor(.secondary)
-                    
-                    Spacer()
-                    
-                    Button {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
-                            addedToCart = true
-                            onAdd()
+                if quantity == 0 {
+                    HStack(alignment: .center) {
+                        Text(item.priceText)
+                            .font(.system(size: 12, weight: .medium))
+                            .foregroundColor(.secondary)
+                        
+                        Spacer()
+                        
+                        Button(action: onAdd) {
+                            ZStack {
+                                Circle()
+                                    .fill(Color.black)
+                                    .frame(width: 26, height: 26)
+                                Image(systemName: "plus")
+                                    .font(.system(size: 11, weight: .bold))
+                                    .foregroundColor(.white)
+                            }
                         }
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-                            withAnimation { addedToCart = false }
-                        }
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .fill(addedToCart ? Color.green : Color.black)
-                                .frame(width: 26, height: 26)
-                            
-                            Image(systemName: addedToCart ? "checkmark" : "plus")
-                                .font(.system(size: 11, weight: .bold))
-                                .foregroundColor(.white)
-                        }
+                        .buttonStyle(.borderless)
                     }
-                    .buttonStyle(.borderless)
-                    .scaleEffect(addedToCart ? 1.15 : 1.0)
+                } else {
+                    HStack(spacing: 6) {
+                        Button(action: onRemove) {
+                            Image(systemName: "minus.circle.fill")
+                                .font(.system(size: 20))
+                        }
+                        
+                        Text("\(quantity)")
+                            .font(.system(size: 14, weight: .bold))
+                            .frame(minWidth: 20)
+                        
+                        Button(action: onAdd) {
+                            Image(systemName: "plus.circle.fill")
+                                .font(.system(size: 20))
+                        }
+                        
+                        Spacer()
+                    }
+                    .foregroundColor(.black)
                 }
             }
             .padding(.horizontal, 8)

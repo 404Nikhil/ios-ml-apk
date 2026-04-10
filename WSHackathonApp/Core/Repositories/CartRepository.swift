@@ -11,9 +11,38 @@ import Combine
 @MainActor
 final class CartRepository: ObservableObject {
     
-    @Published private(set) var items: [CartItem] = []
+    private let storageKey = "ws_hackathon_cart_items"
+    
+    @Published private(set) var items: [CartItem] = [] {
+        didSet {
+            saveCart()
+        }
+    }
     
     var toastManager: ToastManager?
+    
+    init() {
+        loadCart()
+    }
+    
+    private func saveCart() {
+        do {
+            let data = try JSONEncoder().encode(items)
+            UserDefaults.standard.set(data, forKey: storageKey)
+        } catch {
+            print("Failed to save cart: \(error)")
+        }
+    }
+    
+    private func loadCart() {
+        guard let data = UserDefaults.standard.data(forKey: storageKey) else { return }
+        do {
+            let savedItems = try JSONDecoder().decode([CartItem].self, from: data)
+            self.items = savedItems
+        } catch {
+            print("Failed to load cart: \(error)")
+        }
+    }
     
     // MARK: - Add Item
     func add(product: ProductItem, quantity: Int = 1) {

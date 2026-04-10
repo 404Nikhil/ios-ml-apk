@@ -22,6 +22,9 @@ final class CartViewModel: ObservableObject {
 
     private var cancellable: AnyCancellable?
     private var repository: CartRepository?
+    // Prevents buildBundleFromCart() from re-surfacing the bundle immediately
+    // after the user has already added & dismissed it.
+    private var isBundleDismissed = false
     
     func bind(repository: CartRepository) {
         self.repository = repository
@@ -54,6 +57,12 @@ final class CartViewModel: ObservableObject {
         repository?.deleteEntirely(productId: item.id)
     }
     
+    func clearCart() {
+        repository?.clearAll()
+        bundleOffer = nil
+        isBundleDismissed = false  // allow a fresh bundle next session
+    }
+    
     func add(_ item: CartItem) {
         repository?.increaseQuantity(productId: item.id)
     }
@@ -67,11 +76,13 @@ final class CartViewModel: ObservableObject {
         guard let cartRepo = repository else { return }
         for item in items {
             let product = item.asProductItem()
-            // Only add if the cart doesn't ALREADY contain the item
             if !cartRepo.items.contains(where: { $0.id == product.id }) {
                 cartRepo.add(product: product)
             }
         }
+        // Dismiss the bundle card and prevent it from reappearing
+        isBundleDismissed = true
+        self.bundleOffer = nil
     }
     
     func fetchInitialData() {
@@ -91,7 +102,7 @@ final class CartViewModel: ObservableObject {
     
     // Build a bundle offer from current cart items + complementary product using ML recommendations
     func buildBundleFromCart() {
-        guard !items.isEmpty else {
+        guard !items.isEmpty, !isBundleDismissed else {
             bundleOffer = nil
             return
         }

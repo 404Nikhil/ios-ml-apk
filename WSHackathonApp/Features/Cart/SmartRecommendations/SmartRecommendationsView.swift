@@ -39,7 +39,7 @@ struct SmartRecommendationsView: View {
         .onAppear {
             viewModel.cartDidUpdate(cartItems)
         }
-        .onChange(of: cartItems.map(\.id).joined()) { _ in
+        .onChange(of: cartItems.map(\.id).joined()) { _, _ in
             viewModel.cartDidUpdate(cartItems)
         }
     }
@@ -70,7 +70,7 @@ private struct RecommendationSectionView: View {
             // Horizontal scroll of product cards
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack(spacing: 12) {
-                    ForEach(section.items) { item in
+                    ForEach(Array(section.items.enumerated()), id: \.offset) { _, item in
                         NavigationLink(destination: ProductDetailView(
                             product: item.asProductItem(),
                             allProducts: []
@@ -128,7 +128,7 @@ private struct RecommendationProductCard: View {
                     // + Add button
                     Button {
                         // 1. Animate local checkmark
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.6)) {
+                        withAnimation(.spring(duration: 0.3, bounce: 0.3)) {
                             addedToCart = true
                         }
                         
@@ -178,7 +178,8 @@ private struct RecommendationImageView: View {
                 Image(uiImage: image)
                     .resizable()
                     .scaledToFill()
-                    .transition(.opacity.animation(.easeIn(duration: 0.3)))
+                    .transition(.opacity)
+                    .animation(.easeIn(duration: 0.3), value: loader.image != nil)
             } else if loader.hasFailed || url == nil {
                 // Shimmer placeholder for failed/missing images
                 RoundedRectangle(cornerRadius: 10)

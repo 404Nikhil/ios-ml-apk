@@ -51,6 +51,8 @@ final class ProductDetailViewModel: ObservableObject {
                 cartRepo.add(product: product)
             }
         }
+        // Hide the bundle card once added — adding the same bundle twice makes no sense
+        self.bundleOffer = nil
     }
     
     // MARK: - Registry Actions

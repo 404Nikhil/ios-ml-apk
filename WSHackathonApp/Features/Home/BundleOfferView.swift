@@ -187,7 +187,7 @@ struct BundleOfferView: View {
                     
                     // Add bundle button
                     Button(action: {
-                        withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                        withAnimation(.spring(duration: 0.3, bounce: 0.3)) {
                             bundleAdded = true
                             onAddBundle(customItems)
                         }
@@ -221,7 +221,7 @@ struct BundleOfferView: View {
             .shadow(color: Color.black.opacity(0.06), radius: 8, x: 0, y: 3)
         }
         .onAppear { customItems = bundle.items }
-        .onChange(of: bundle.id) { _ in customItems = bundle.items }
+        .onChange(of: bundle.id) { _, _ in customItems = bundle.items }
     }
 }
 
@@ -376,7 +376,7 @@ struct CompactBundleOfferView: View {
                 Spacer()
                 
                 Button(action: {
-                    withAnimation(.spring(response: 0.3, dampingFraction: 0.7)) {
+                    withAnimation(.spring(duration: 0.3, bounce: 0.3)) {
                         bundleAdded = true
                         onAddBundle(customItems)
                     }
@@ -408,6 +408,6 @@ struct CompactBundleOfferView: View {
         )
         .shadow(color: Color.black.opacity(0.05), radius: 6, x: 0, y: 2)
         .onAppear { customItems = bundle.items }
-        .onChange(of: bundle.id) { _ in customItems = bundle.items }
+        .onChange(of: bundle.id) { _, _ in customItems = bundle.items }
     }
 }

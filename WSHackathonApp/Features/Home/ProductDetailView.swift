@@ -58,6 +58,7 @@ struct ProductDetailView: View {
                     )
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
+                    .transition(.opacity.combined(with: .scale(scale: 0.97)))
                 }
                 
                 // MARK: - Similar Items

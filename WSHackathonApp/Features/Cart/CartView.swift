@@ -12,6 +12,8 @@ struct CartView: View {
     @EnvironmentObject var cartRepository: CartRepository
     @EnvironmentObject var tabBarVM: WSTabBarViewModel
     
+    @State private var showClearConfirmation = false
+    
     var body: some View {
         NavigationStack {
             ZStack {
@@ -159,6 +161,7 @@ struct CartView: View {
                                         }
                                     )
                                     .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                    .transition(.opacity.combined(with: .scale(scale: 0.97)))
                                 }
                                 .listRowBackground(Color.clear)
                                 .listRowSeparator(.hidden)
@@ -232,6 +235,31 @@ struct CartView: View {
                 }
             }
             .navigationTitle(AppStrings.Cart.title)
+            .toolbar {
+                if !viewModel.isEmptyCart {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button(role: .destructive) {
+                            showClearConfirmation = true
+                        } label: {
+                            Label("Empty Cart", systemImage: "trash")
+                                .labelStyle(.iconOnly)
+                                .foregroundColor(.red)
+                        }
+                    }
+                }
+            }
+            .confirmationDialog(
+                "Empty your cart?",
+                isPresented: $showClearConfirmation,
+                titleVisibility: .visible
+            ) {
+                Button("Remove All Items", role: .destructive) {
+                    viewModel.clearCart()
+                }
+                Button("Cancel", role: .cancel) { }
+            } message: {
+                Text("This will remove all \(viewModel.items.count) item\(viewModel.items.count == 1 ? "" : "s") from your cart.")
+            }
         }
         .onAppear {
             Task {
@@ -239,10 +267,10 @@ struct CartView: View {
                 viewModel.fetchInitialData()
             }
         }
-        .onChange(of: viewModel.items.count) { _ in
+        .onChange(of: viewModel.items.count) { _, _ in
             viewModel.buildBundleFromCart()
         }
-        .onChange(of: viewModel.isTrendingLoading) { isLoading in
+        .onChange(of: viewModel.isTrendingLoading) { _, isLoading in
             if !isLoading {
                 viewModel.buildBundleFromCart()
             }

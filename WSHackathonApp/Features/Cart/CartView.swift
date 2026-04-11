@@ -20,25 +20,39 @@ struct CartView: View {
                 
                 VStack(spacing: 0) {
                     // MARK: - Custom Header
-                    HStack {
-                        Text(AppStrings.Cart.title)
-                            .font(.largeTitle)
-                            .fontWeight(.bold)
-                            .foregroundColor(.black)
-                        
-                        Spacer()
-                        
-                        if !viewModel.isEmptyCart {
-                            Button(action: {
-                                withAnimation { viewModel.clearCart() }
-                            }) {
-                                Image(systemName: "trash")
-                                    .font(.system(size: 16))
-                                    .foregroundColor(.black)
-                                    .padding(10)
-                                    .background(Color.black.opacity(0.05))
-                                    .clipShape(Circle())
+                    VStack(alignment: .leading, spacing: 4) {
+                        HStack {
+                            Text(AppStrings.Cart.title)
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                            
+                            if !viewModel.isEmptyCart {
+                                Button(action: {
+                                    withAnimation { viewModel.clearCart() }
+                                }) {
+                                    Image(systemName: "trash")
+                                        .font(.system(size: 16))
+                                        .foregroundColor(.black)
+                                        .padding(10)
+                                        .background(Color.black.opacity(0.05))
+                                        .clipShape(Circle())
+                                }
                             }
+                        }
+                        
+                        NavigationLink(destination: FavoritesView()) {
+                            HStack(spacing: 6) {
+                                Image(systemName: "heart.fill")
+                                    .foregroundColor(.red)
+                                Text("See your favourites")
+                                    .font(.subheadline)
+                                    .fontWeight(.semibold)
+                                    .foregroundColor(.primary)
+                            }
+                            .padding(.vertical, 4)
                         }
                     }
                     .padding(.horizontal, 16)

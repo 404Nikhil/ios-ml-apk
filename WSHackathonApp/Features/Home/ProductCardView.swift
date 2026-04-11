@@ -9,6 +9,8 @@ import Foundation
 import SwiftUI
 
 struct ProductCardView: View {
+    @EnvironmentObject var favoritesRepo: FavoritesRepository
+    
     let product: ProductItem
     let quantity: Int
     var registryQuantity: Int = 0
@@ -42,19 +44,15 @@ struct ProductCardView: View {
                 .frame(height: 180)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
                 
-                // Free Shipping badge
-                HStack(spacing: 3) {
-                    Image(systemName: "shippingbox.fill")
-                        .font(.system(size: 8))
-                    Text("FREE SHIP")
-                        .font(.system(size: 8, weight: .bold))
-                        .kerning(0.5)
+                // Wishlist Button
+                Button(action: {
+                    withAnimation { favoritesRepo.toggleFavorite(product) }
+                }) {
+                    Image(systemName: favoritesRepo.isFavorite(product) ? "heart.fill" : "heart")
+                        .font(.system(size: 16, weight: .bold))
+                        .foregroundColor(favoritesRepo.isFavorite(product) ? .red : .gray)
+                        .padding(8)
                 }
-                .foregroundColor(.white)
-                .padding(.horizontal, 7)
-                .padding(.vertical, 4)
-                .background(Color.black.opacity(0.75))
-                .clipShape(Capsule())
                 .padding(8)
             }
             
@@ -84,7 +82,15 @@ struct ProductCardView: View {
                 Spacer(minLength: 4)
                 
                 // MARK: - Add To Cart Button
-                if quantity == 0 {
+                if !product.isAvailable {
+                    Text("Unavailable")
+                        .font(.system(size: 12, weight: .bold))
+                        .frame(maxWidth: .infinity)
+                        .padding(.vertical, 9)
+                        .background(Color.gray.opacity(0.3))
+                        .foregroundColor(.gray)
+                        .clipShape(Capsule())
+                } else if quantity == 0 {
                     Button(action: {
                         withAnimation(.spring(response: 0.35, dampingFraction: 0.6)) {
                             isPressed = true

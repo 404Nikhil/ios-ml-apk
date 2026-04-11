@@ -135,7 +135,22 @@ class HomeViewModel: ObservableObject {
         
         do {
             let dtos: [ProductItemDTO] = try await APIClient.shared.request(Endpoint.products())
-            self.products = dtos.map { ProductItem(from: $0) }
+            var fetchedProducts = dtos.map { ProductItem(from: $0) }
+            
+            // Add a mock unavailable product
+            if let first = fetchedProducts.first {
+                fetchedProducts.append(ProductItem(
+                    id: "mock_unavailable_item",
+                    title: "Exclusive Out-of-Stock Item",
+                    price: first.price,
+                    path: first.path,
+                    brand: first.brand,
+                    productType: first.productType,
+                    isAvailable: false
+                ))
+            }
+            
+            self.products = fetchedProducts
         } catch {
             print(error)
             errorMessage = "Failed to load products"

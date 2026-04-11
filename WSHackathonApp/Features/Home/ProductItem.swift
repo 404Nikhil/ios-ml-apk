@@ -20,12 +20,13 @@ extension ProductItem: Transferable {
 }
 
 struct ProductItem: Identifiable, Codable, Sendable, Equatable {
-    let id: String
-    let title: String
-    let price: Double?
-    let path: String?
-    let brand: String?
-    let productType: String?
+    var id: String
+    var title: String
+    var price: Double?
+    var path: String?
+    var brand: String?
+    var productType: String?
+    var isAvailable: Bool = true
     
     var imageURL: URL? {
         if let imageUrl = path {

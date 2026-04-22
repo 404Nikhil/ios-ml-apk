@@ -1,8 +1,4 @@
-# Abrats - Smart eCommerce iOS Application
 
-This codebase represents a state-of-the-art iOS eCommerce application powered by an advanced FastAPI ML backend. The application seamlessly bridges traditional eCommerce functionality with multimodal generative AI, featuring a fully autonomous Assistant Chatbot, dynamic Smart Recommendations, and intelligent semantic filtering.
-
----
 
 ## 🧠 Detailed AI Architecture (Model-Wise)
 
@@ -55,7 +51,6 @@ graph TD
 **Model Used:** Gensim Word2Vec + PyTorch CLIP ViT-B/32 + FAISS
 **Logic Path:** `/recommendations` API endpoint
 
-The Smart Cart suggestions rely on multi-modal tensor interpolation calculating geometric centroids without static rigid parameters.
 
 ```mermaid
 graph LR

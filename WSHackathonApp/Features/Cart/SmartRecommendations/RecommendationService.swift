@@ -36,14 +36,12 @@ final class RecommendationService {
             throw URLError(.badServerResponse)
         }
 
-        // Check for server-side error JSON: {"error": "No valid items"}
+        // Check for server-side error JSON: {"error": "..."}
         if let errorPayload = try? JSONDecoder().decode([String: String].self, from: data),
            let serverError = errorPayload["error"] {
-            throw NSError(
-                domain: "RecommendationService",
-                code: -1,
-                userInfo: [NSLocalizedDescriptionKey: serverError]
-            )
+            // Log but don't necessarily throw a hard error if we want a silent failure
+            print("ℹ️ Recommendation Server message: \(serverError)")
+            return RecommendationResponse(sections: [])
         }
 
         return try JSONDecoder().decode(RecommendationResponse.self, from: data)

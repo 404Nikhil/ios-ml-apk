@@ -1,9 +1,4 @@
-//
-//  WSTabView.swift
-//  WSHackathonApp
-//
-//  Created by Nilesh Mahajan on 03/04/26.
-//
+
 
 import SwiftUI
 

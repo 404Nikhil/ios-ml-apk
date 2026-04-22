@@ -13,7 +13,9 @@ for pid, val in products.items():
     if 'image' in val:
         filename = os.path.basename(val['image'])
         key = os.path.splitext(filename)[0]
-        if key in orig:
+        if pid in orig:
+            new_embs[pid] = orig[pid]
+        elif key in orig:
             new_embs[pid] = orig[key]
 
 with open("/Users/hilkin/Development/AI-THON/intcart_backend/data/image_embeddings.pkl", "wb") as f:

@@ -1,10 +1,4 @@
-# IntCart — Intelligent Cart Recommendation Engine
 
-An AI-powered product recommendation API that uses **Item2Vec**, **FAISS**, and **CLIP image embeddings** to suggest contextually relevant products based on a user's shopping cart.
-
----
-
-## Project Structure
 
 ```
 intcart/
@@ -31,12 +25,6 @@ intcart/
 
 ---
 
-## Prerequisites
-
-- **Python 3.9+**
-- **pip** (or pip3)
-
----
 
 ## Setup
 
@@ -93,89 +81,16 @@ The API will be available at **http://localhost:8000**
 
 ---
 
-## API Endpoints
 
-### `POST /recommend`
-
-Get product recommendations based on cart contents.
-
-**Request:**
-
-```bash
-curl -X POST http://localhost:8000/recommend \
-  -H "Content-Type: application/json" \
-  -d '["pan_0", "knife_30"]'
-```
-
-**Response:**
-
-```json
-{
-  "sections": [
-    {
-      "title": "Frequently bought together",
-      "items": [
-        {
-          "id": "spatula_21",
-          "name": "spatula",
-          "type": "spatula",
-          "category": "cookware",
-          "price": 639,
-          "image": "/images/spatula_2.jpg"
-        }
-      ]
-    },
-    {
-      "title": "Complete your cooking setup",
-      "items": [...]
-    },
-    {
-      "title": "Similar items",
-      "items": [...]
-    }
-  ]
-}
-```
-
-The recommendation engine returns three sections:
-
-| Section | Logic |
-|---|---|
-| **Frequently bought together** | Rule-based bundles (e.g., pan → spatula, pot, knife) |
-| **Complete your setup** | FAISS nearest-neighbour search + image similarity scoring |
-| **Similar items** | Best-priced items of the same product types in the cart |
-
----
-
-### `GET /skus`
-
-Returns the full product catalogue with real product images.
-
-```bash
-curl http://localhost:8000/skus
-```
-
----
-
-### `GET /images/{filename}`
-
-Serves static product images.
-
-```bash
-# Example
-http://localhost:8000/images/pan_1.jpg
-```
-
----
 
 ## How It Works
 
 ```
-Cart Items
+   Items
     │
     ▼
 ┌────────────────────┐
-│  Item2Vec Embeddings │ ──► Mean vector of cart items
+│  Item2Vec Embeddings │ ──► Mean vector of items
 └────────────────────┘
     │
     ▼
@@ -194,7 +109,7 @@ Cart Items
     │
     ▼
 ┌────────────────────┐
-│  Bundle Rules       │ ──► pan→spatula, knife→cutting_board, etc.
+│  Bundle Rules       │
 └────────────────────┘
     │
     ▼
@@ -203,15 +118,6 @@ Cart Items
 
 ---
 
-## Product Categories
-
-| Category | Product Types |
-|---|---|
-| **Cookware** | pan, pot, spatula, knife, cutting_board |
-| **Furniture** | sofa, chair, coffee_table |
-| **Dining** | table, plate, glass |
-
----
 
 ## License
 

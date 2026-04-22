@@ -82,10 +82,21 @@ def cosine(a, b):
 
 
 def resolve_item(name):
-    if name in products:
-        return name
-    matches = [k for k in products.keys() if k.startswith(name)]
-    return matches[0] if matches else None
+    if not name:
+        return None
+    
+    # Try exact match (case-insensitive keys)
+    name_lower = name.lower()
+    for k in products.keys():
+        if k.lower() == name_lower:
+            return k
+            
+    # Try prefix match
+    for k in products.keys():
+        if k.lower().startswith(name_lower):
+            return k
+            
+    return None
 
 
 def pick_best_product(product_list):
@@ -135,7 +146,8 @@ def recommend(cart: list[str]):
     cart = [i for i in cart if i is not None]
 
     if not cart:
-        return {"error": "No valid items"}
+        # Instead of returning error, return empty sections to prevent noisy logs in frontend
+        return {"sections": []}
 
     cart_category = products[cart[0]]["category"]
     cart_types = [products[i]["type"] for i in cart]
